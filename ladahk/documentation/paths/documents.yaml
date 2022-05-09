@@ -1,0 +1,83 @@
+get:
+  summary: Returns a list of documents.
+  description: Get documents corresponding to query.
+  operationId: getDocuments
+  tags:
+    - Documents
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: limit
+      in: query
+      required: true
+      description: Max number of elements to return
+      type: integer
+    - name: page
+      in: query
+      description: Page from where to start returning elements
+      required: true
+      type: integer
+    - name: sortField
+      in: query
+      description: "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant"
+      type: string
+    - name: lastUpdated
+      in: query
+      description: Unix timestamp to use for sync
+      type: string
+    - name: deleted
+      in: query
+      description: if provided, api return with trashed collection
+      type: string
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        type: object
+        properties:
+          limit:
+            type: integer
+            description: Max elements to return
+          page:
+            type: integer
+            description: Page asked
+          pages:
+            type: integer
+            description: Total pages available
+          rows:
+            type: array
+            description: Elements asked
+            items:
+              $ref: '#/definitions/Document'
+          total:
+            type: integer
+            description: Total of elements corresponding to the query without limits.
+    500:
+      description: An unexpected error arrived
+post:
+  summary: Creates a document
+  description: Creates a document.
+  operationId: createDocument
+  tags:
+    - Documents
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - in: body
+      name: body
+      description: The document to create
+      schema:
+        $ref: "#/definitions/Document"
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/Document'
+    400:
+      $ref: '#/responses/UnauthorizedError'

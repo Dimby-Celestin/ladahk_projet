@@ -1,0 +1,25 @@
+type: object
+description: RequiredDocument
+properties:
+  id:
+    type: string
+    readOnly: true
+  name:
+    type: string
+    description: name
+  price:
+    type: float
+    description: price
+  business_category_id:
+    type: string 
+  ownership:
+    type: boolean 
+  updated_at:
+    type: integer
+    format: Timestamp 
+    readOnly: true
+  created_at:
+    type: integer
+    format: Timestamp
+    readOnly: true
+  

@@ -1,0 +1,143 @@
+#article {
+    .header-image {
+        height: 460px;
+        width: 100%;
+        margin-top: -22px;
+        background-position: bottom;
+        background-size: cover;
+    }
+    .description {
+        color: #212020;
+        font-size: 1rem;
+        font-weight: 100;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.37;
+        letter-spacing: normal;
+        text-align: left;
+        margin-bottom: 2.19rem;
+        font-family: 'sourceSansPro-Light'  !important;
+    }
+    .avatar {
+        img {
+            width: 4.37rem!important;
+            height: 4.37rem!important;
+            border-radius: 50% !important; 
+        }           
+    }
+    .author {
+        color: #212020;
+        font-size: 1.4rem;
+        //font-size: 24px;
+        font-weight: 300;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.37;
+        font-family: OpenSans-Light;
+        font-style: italic !important;
+    }   
+    .post {
+        color: #212020;
+        font-size: 1rem;
+        //font-size: 18px;
+        font-weight: 100;
+        line-height: 1.37;
+        font-family: OpenSans-Light;
+        font-style: italic;
+    } 
+    .date {
+        font-size: 1.80rem!important;
+        border-left: 1px solid #707070;
+        padding-left: 1.37rem;
+        top: 6px;
+        position: relative; 
+        h3 {
+            height: 30px;
+            margin-top: -13px;
+            position: relative;
+            top: 6px;
+            color: #212020;
+            font-size: 1.4rem;
+            font-weight: 300;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.37;
+            font-family: OpenSans-Light;
+            font-style: italic !important;
+        }
+    }
+    .title2 {
+        font-size: 4rem!important;
+        font-family: SourceSansPro-Bold!important;
+    }
+    .description2 {
+        font-size: 1.2rem!important;
+        font-family: sourceSansPro-Light!important;
+        //font-family: SourceSansPro !important;
+    }
+}
+.mustToDo{
+	font-family: sourceSansPro-bold!important;
+	font-size: 30px!important;
+	font-weight: bold!important;
+}
+.exploreAll{
+	font-family: SourceSansPro-bk;
+	font-size: 20px;
+	font-weight: bold;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.35;
+	letter-spacing: normal;
+	text-align: left;
+	color: #ffffff;
+}
+.text-slide{
+  font-family: futura-medium!important;
+  font-size: 26px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.35;
+  letter-spacing: normal;
+  text-align: left;
+  color: #e5e5e5
+}
+.titleArticle{
+	font-family: sourceSansPro-Bold;
+	font-size: 60px;
+	line-height: 1.26;
+	letter-spacing: normal;
+	text-align: center;
+	color: #212020;
+}
+.titleDescription{
+	font-family: OpenSans-Light;
+	font-size: 1.4rem;
+	font-weight: 300;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.37;
+	letter-spacing: normal;
+	text-align: center;
+	color: #212020;
+}
+.it {
+    font-style: italic !important;
+}
+.titleArticles{
+	font-family: sourceSansPro-light!important;
+	font-size: 20px!important;
+	text-align: center!important;
+    color: #1f1f1f;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.27;
+    letter-spacing: normal;
+    text-align: center;
+}
+.pt-4-custom {
+    padding-top: 1.9rem !important;
+    background-color: transparent !important;
+}

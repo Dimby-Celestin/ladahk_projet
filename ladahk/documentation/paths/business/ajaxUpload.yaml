@@ -1,0 +1,29 @@
+post:
+  summary: Upload a file from ajax
+  description: Upload a file from ajax
+  operationId: uploadAjaxFileBusiness
+  tags: 
+    - Business
+  consumes:
+    - 'multipart/form-data'
+  parameters:
+    - name: id
+      in: path
+      description: Business ID.
+      type: string
+      required: true
+    - name: file_data
+      in: formData
+      description: The uploaded file data
+      type: file
+    - name: fileId
+      in: formData
+      description: real file name
+      type: string
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+    400:
+      $ref: '#/responses/UnauthorizedError'

@@ -1,0 +1,183 @@
+<div class="main-content container" id="admin">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="title">Welcome Admin.</h4>
+                <p class="title-2">SITE MEMBERS</p>
+            </div>
+
+            <div class="col-md-12 mt-2"><hr/></div>   
+
+            <div class="col-md-12">
+                <h4 class="modal-title">Nromada Hote</h4>
+                <button class="btn btn-success mt-2">APPROVED</button>
+
+                <div class="d-flex justify-content-start mb-3">
+                    <div class="p-2">
+                        <ng-select class="classtype" [items]="statusEs" name="status" placeholder="LISTING CLASS TYPE"
+                            bindLabel="name" 
+                            bindValue="id" 
+                            [(ngModel)]="selectedstatus">
+                        </ng-select> 
+                    </div>
+                    <div class="p-2">
+                        <input type="text" class="form-control" id="comment" placeholder="COMMENT" required="">
+                    </div>
+                    <div class="p-2">
+                        <button type="submit" class="btn btn-secondary">UPDATE</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-4">
+                <p class="">LISTING CLASS TYPE: CLASS A</p>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Ownership papers of Land</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-success bt-view">view</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <p>Lease deed/Rent deed/Partnership deed of the premises where the applicant proprietor desire to start the Hotel/Camp/Resort.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-success bt-view">view</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <p>Drawing/Site Plan duly approved  by the competent authority.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-success bt-view">view</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <p>Sophisticated Accommodation (for hotels it should be Minimum 12 rooms i.e 24 Beds capacity) </p>
+                        <p>a. 1. Heating System Single Bed Room = 160 sqft.</p>
+                        <p class="ml-3">2. Non-Heating Double Bed Room = 140 sqft.</p>
+
+                        <p>b. 1. Heating System Single Bed Room = 220 sqft.</p>
+                        <p  class="ml-3">2. Non-Heating Double Bed Room = 180 sqft.</p>
+                        <p>c. Bath Rooms = 40 sqft. (If fitted with shower & 50 sqft. with tub)</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-success bt-view">view</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <p>Character Certificate of applicant proprietor from the Police Department.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-success bt-view">view</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <p>Self-attested copy of Schedule Tribe Certificate of the applicant proprietor under UT Ladakh.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-success bt-view">view</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <p>Two passport size self attested photos of the applicant proprietor.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-success bt-view">view</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <p>Press cutting regarding the No Objection from general public (within two weeks from the date of publication).</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-success bt-view">view</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <p>Self attested copy of PAN Card/Aadhar Card/Election Card of applicant/proprietor.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-outline-dark">view</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <p>Consent order from UT Ladakh Pollution Control Board for Hotels (Hotels with upto Six (6) rooms are exempted  from consent from the pollution board.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-outline-dark">view</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <p>NOC from UT Ladakh Fire Service Department.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-outline-dark">view</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <p>NOC from PHE Department, UT Ladakh/Electric Department UT Ladakh.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-outline-dark">view</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <p>Building permission from NAC Department.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-outline-dark">view</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <p>Photograph of the team undertaking the inspection of premises should also be done to establish physical presence of the official from the Tourism Department.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-outline-dark">view</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-sm-6">
+                        <p>Minimum 10 vehicle parking capacity.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <mat-checkbox class="" id="role" [(ngModel)]="checked" [checked]="checked"></mat-checkbox>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+        

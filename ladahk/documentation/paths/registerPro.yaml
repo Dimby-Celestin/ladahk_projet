@@ -1,0 +1,32 @@
+post:
+  summary: Register a pro user
+  description: Register a pro user
+  tags: 
+    - Authentication
+  operationId: registerPro
+  consumes:
+    - application/json
+  parameters:
+    - in: body
+      name: user
+      description: the user to registerPro
+      schema:
+        type: object
+        properties: 
+          phone: 
+            type: string
+          email: 
+            type: string
+          name:
+            type: string
+          password:
+            type: string
+  produces:
+    - application/json
+  responses:
+    200:
+      description: Connected, get credentials
+      schema:
+        $ref: '#/definitions/AuthCredentials'
+    404:
+      description: The user has not been found

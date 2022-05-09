@@ -1,0 +1,59 @@
+    <div>
+        <button (click)="onNoClick()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="" style="color: black">
+          <h3>
+            {{ data && data.name ? data.name : '' }} <br/>          
+        </h3>
+        {{ data && data.phone ? data.phone : '' }} <br/> 
+        {{ data && data.email ? data.email : '' }} 
+        
+        </div><br/><br/><br/>
+        <div class="row" *ngIf="rowsGal"  style="color: black"> 
+          <div class="col-3" *ngFor="let d of rowsGal">   
+              <img [src]="d.document.realPath" 
+              alt="photo" 
+              class="w-100 shadow-1-strong rounded mb-4">  
+                              
+          </div>
+        </div>
+              
+        <div class=" progress-loader text-center" [hidden]="!isLoading">
+            <img src="assets/images/loadbk.gif">
+        </div>
+
+        <div class="col-lg-12 pb-4 mt-5 mb-4 footer-pager text-center" >
+            <div class="col text-right">
+              <pagination-template #p="paginationApi" id="page" (pageChange)="pageChangeEvent($event)">
+                <nav class="mx-auto">
+                <ul class="pagination mx-auto">
+                  <li [class.disabled]="p.isFirstPage()" class="page-item">
+                    <a class="page-link prev" (click)="!p.isFirstPage() && p.previous()">
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item" *ngFor="let customPage of p.pages">
+                    <a class="page-link" [class.active]="p.getCurrent() === customPage.value" (click)="p.setCurrent(customPage.value)" *ngIf="p.getCurrent() !== customPage.value">{{
+                      customPage.label }}</a>
+                    <a class="page-link active" *ngIf="p.getCurrent() === customPage.value">{{ customPage.label }}</a>
+                  </li>
+                  <li class="page-item" [class.disabled]="p.isLastPage()">
+                    <a (click)="!p.isLastPage() && p.next()" class="page-link next">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+                </nav>
+                <h4 class="text-center">{{page}} to {{pageSize * page}} of {{pageLength}} totals</h4> 
+              </pagination-template>
+            </div>
+          </div>
+
+    </div>
+    
+    
+    
+    

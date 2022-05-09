@@ -1,0 +1,32 @@
+post:
+  summary: Register a user
+  description: Register a user
+  tags: 
+    - Authentication
+  operationId: register
+  consumes:
+    - application/json
+  parameters:
+    - in: body
+      name: user
+      description: the user to register
+      schema:
+        type: object
+        properties: 
+          phone: 
+            type: string
+          email: 
+            type: string
+          name:
+            type: string
+          password:
+            type: string
+  produces:
+    - application/json
+  responses:
+    200:
+      description: Connected, get credentials
+      schema:
+        $ref: '#/definitions/AuthCredentials'
+    404:
+      description: The user has not been found

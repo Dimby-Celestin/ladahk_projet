@@ -1,0 +1,48 @@
+post:
+  summary: Upload a file
+  description: Upload a file
+  operationId: uploadGallery
+  tags: 
+    - Gallery
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  consumes:
+    - 'multipart/form-data'
+  parameters:
+    - name: file
+      in: formData
+      description: The uploaded file data
+      required: true
+      type: file
+    - name: name
+      in: header
+      description: final name for this file
+      required: true
+      type: string
+    - name: type
+      in: header
+      description: type
+      enum:
+        - banner
+        - gallery
+        - thumbnail
+        - other
+      required: true
+      type: string
+    - name: path
+      in: header
+      description: Final path for this file
+      required: true
+      type: string
+    - name: categoryId
+      in: header
+      type: integer
+      required: true
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+    400:
+      $ref: '#/responses/UnauthorizedError'

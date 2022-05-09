@@ -1,0 +1,90 @@
+<div class="main-content container" id="admin">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class="title">Welcome Admin.</h4>
+            <p class="title-2">ADD/UPDATE SITE CONTENT
+              <button class="btn btn-warning ml-4" [routerLink]="['/post']" >
+                EDIT SITE
+              </button> 
+              <button  class="btn btn-warning ml-4 text-right" [routerLink]="['list']" >
+                TRANSFER
+              </button>
+              <button class="btn btn-warning ml-4" [routerLink]="['payement-details']" >
+                PAYMENT DETAILS
+              </button>  
+            </p>
+        </div>
+        
+        <div class="col-md-12 mt-2"><hr/></div>   
+  
+        <div class="col-md-6 d-flex mt-4">
+          <p class="title-2"> Photographer</p>            
+        </div>
+        <div class="col-md-6 d-flex mt-4"></div>        
+
+        <div class="col-md-12 mt-2"><hr/></div>   
+        
+        <div class="col-xs-12 col-md-10 content table-responsive mt-4">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th class="text-left border-top-0">S.No</th>
+                <th class="text-left border-top-0">phone</th>
+                <th class="text-left border-top-0">name</th>
+                <th class="text-left border-top-0">Registering for</th>
+                <th class="text-left border-top-0" style="width: 200px;"></th>
+              </tr>
+            </thead>
+            <tbody class="pt-3" *ngIf="rows && rows.length">
+              <tr *ngFor="let d of rows | paginate: {id: 'page', itemsPerPage: pageSize, currentPage: page, totalItems: pageLength}">
+                <td class="text-left">{{d.id}}</td>
+                <td class="text-left">{{d.phone}}</td>
+                <td class="text-left">{{d.name}}</td>
+                <td class="text-left">{{d.photographer}}</td>
+               
+              <td class="td-actions text-right">
+                <button (click)="photo(d)" type="submit" class="btn btn btn-outline-dark btn-link btn-xs"> 
+                VIEW
+              </button>
+            </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class=" progress-loader text-center" [hidden]="!isLoading">
+              <img src="assets/images/loadbk.gif">
+          </div>
+        </div>
+
+        <div class="col-lg-12 pb-4 mt-5 mb-4 footer-pager text-center">
+          <div class="col text-right">
+            <pagination-template #p="paginationApi" id="page" (pageChange)="pageChangeEvent($event)">
+              <nav class="mx-auto">
+              <ul class="pagination mx-auto">
+                <li [class.disabled]="p.isFirstPage()" class="page-item">
+                  <a class="page-link prev" (click)="!p.isFirstPage() && p.previous()">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item" *ngFor="let customPage of p.pages">
+                  <a class="page-link"  [class.active]="p.getCurrent() === customPage.value" (click)="p.setCurrent(customPage.value)" *ngIf="p.getCurrent() !== customPage.value">{{
+                    customPage.label }}</a>
+                  <a class="page-link active" *ngIf="p.getCurrent() === customPage.value">{{ customPage.label }}</a>
+                </li>
+                <li class="page-item" [class.disabled]="p.isLastPage()">
+                  <a (click)="!p.isLastPage() && p.next()" class="page-link next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+              </nav>
+              <h4 class="text-center">{{page}} to {{pageSize * page}} of {{pageLength}} totals</h4> 
+            </pagination-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,31 @@
+put:
+  summary: Reject business
+  description: Reject business by ID.
+  operationId: rejectBusinessRequiredDocument
+  tags:
+    - BusinessRequiredDocument
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: id
+      in: path
+      description: BusinessRequiredDocument ID.
+      type: string
+      required: true
+    - in: body
+      name: body
+      schema:
+        type: object
+        properties: 
+          rejectedReason: 
+            type: string
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/BusinessRequiredDocument'
+    400:
+      $ref: '#/responses/UnauthorizedError'

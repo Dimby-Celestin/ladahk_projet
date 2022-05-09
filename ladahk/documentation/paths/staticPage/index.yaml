@@ -1,0 +1,75 @@
+get:
+  summary: Gets a doc by ID
+  description: Gets a doc by ID, with all data excepts the password
+  operationId: getStaticPage
+  tags:
+    - StaticPage
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: id
+      in: path
+      description: StaticPage ID. If called from the application, can be "me".
+      type: string
+      required: true
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/StaticPage'
+    400:
+      $ref: '#/responses/UnauthorizedError'
+put:
+  summary: Updates a StaticPage by ID
+  description: Updates a StaticPage by ID.
+  operationId: updateStaticPage
+  tags:
+    - StaticPage
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: id
+      in: path
+      description: StaticPage ID.
+      type: string
+      required: true
+    - in: body
+      name: user
+      description: The user to update
+      schema:
+        $ref: "#/definitions/StaticPage"
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/StaticPage'
+    400:
+      $ref: '#/responses/UnauthorizedError'
+delete:
+  summary: Deletes a user by ID
+  description: Deletes a user by ID
+  operationId: deleteStaticPage
+  tags:
+    - StaticPage
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: id
+      in: path
+      description: StaticPage ID
+      type: string
+      required: true
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+    400:
+      $ref: '#/responses/UnauthorizedError'

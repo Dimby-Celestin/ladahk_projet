@@ -1,0 +1,46 @@
+{
+  "paths": {
+  "@app-models/*": ["src/app/shared/models/*"],
+  "@app-services/*": ["src/app/shared/services/*"],
+  "@app-providers/*": ["src/app/shared/providers/*"],
+  "@app-pipes/*": ["src/app/shared/pipes/*"],
+  "@app-directives/*": ["src/app/shared/directives*"],
+  "@app-validators/*": ["src/app/shared/vaidators/*"],
+  "@app-guards/*": ["src/app/shared/guards/*"],
+  "@app-resolvers/*": ["src/app/shared/resolvers/*"]
+},
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@app-models/*": ["app/shared/models/*"],
+      "@app-services/*": ["app/shared/services/*"],
+      "@app-providers/*": ["app/shared/providers/*"],
+      "@app-pipes/*": ["app/shared/pipes/*"],
+      "@app-directives/*": ["app/shared/directives*"],
+      "@app-validators/*": ["app/shared/vaidators/*"],
+      "@app-guards/*": ["app/shared/guards/*"],
+      "@app-resolvers/*": ["app/shared/resolvers/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

@@ -1,0 +1,10 @@
+UserTokenHeader:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: User token placed in headers
+UserTokenQuery:
+    type: apiKey
+    in: query
+    name: token
+    description: User token placed in a query param

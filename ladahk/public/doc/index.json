@@ -1,0 +1,6612 @@
+{
+  "swagger": "2.0",
+  "basePath": "/api/v1",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "info": {
+    "title": "Ladakh swagger",
+    "description": "Documentation for the ladakh platform",
+    "version": "0.0.1"
+  },
+  "securityDefinitions": {
+    "UserTokenHeader": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "User token placed in headers"
+    },
+    "UserTokenQuery": {
+      "type": "apiKey",
+      "in": "query",
+      "name": "token",
+      "description": "User token placed in a query param"
+    }
+  },
+  "definitions": {
+    "AuthCredentials": {
+      "type": "object",
+      "description": "Data that are usefull for getting authentified data",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "tokenExpiration": {
+          "type": "integer",
+          "description": "Timestamp when the token will expire in seconds since UNIX epoch"
+        }
+      }
+    },
+    "Document": {
+      "type": "object",
+      "description": "Patient",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "filename": {
+          "type": "string"
+        },
+        "original_filename": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "mime_type": {
+          "type": "string"
+        },
+        "extension": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "thumbnail",
+            "gallery",
+            "banner"
+          ]
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp when the token will expire in seconds since UNIX epoch",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp when the token will expire in seconds since UNIX epoch",
+          "readOnly": true
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "description": "User",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "approved": {
+          "type": "boolean",
+          "default": false
+        },
+        "password": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string",
+          "default": "admin",
+          "enum": [
+            "admin",
+            "vendor",
+            "photographer",
+            "user"
+          ]
+        },
+        "lastUpdatedAt": {
+          "type": "integer",
+          "format": "Timestamp when the token will expire in seconds since UNIX epoch",
+          "readOnly": true
+        },
+        "createdAt": {
+          "type": "integer",
+          "format": "Timestamp when the token will expire in seconds since UNIX epoch",
+          "readOnly": true
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "description": "Category",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "description": "name"
+        },
+        "slug": {
+          "type": "string",
+          "description": "name"
+        },
+        "image": {
+          "$ref": "#/definitions/Document"
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp when the token will expire in seconds since UNIX epoch",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp when the token will expire in seconds since UNIX epoch",
+          "readOnly": true
+        }
+      }
+    },
+    "Article": {
+      "type": "object",
+      "description": "Article",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "title": {
+          "type": "string",
+          "description": "title of the article"
+        },
+        "order": {
+          "type": "integer",
+          "description": "order of the article"
+        },
+        "content": {
+          "type": "string",
+          "description": "content of the article"
+        },
+        "slug": {
+          "type": "string",
+          "description": "name"
+        },
+        "thumbnail": {
+          "$ref": "#/definitions/Document"
+        },
+        "banner": {
+          "$ref": "#/definitions/Document"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Document"
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Category"
+          }
+        },
+        "posted_at": {
+          "type": "string",
+          "format": "Date",
+          "readOnly": true
+        },
+        "must_to_do": {
+          "type": "boolean",
+          "default": false
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        }
+      }
+    },
+    "News": {
+      "type": "object",
+      "description": "News",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "title": {
+          "type": "string",
+          "description": "title of the article"
+        },
+        "content": {
+          "type": "string",
+          "description": "content of the article"
+        },
+        "slug": {
+          "type": "string",
+          "description": "name"
+        },
+        "thumbnail": {
+          "$ref": "#/definitions/Document"
+        },
+        "banner": {
+          "$ref": "#/definitions/Document"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Document"
+          }
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        }
+      }
+    },
+    "Roadtoladakh": {
+      "type": "object",
+      "description": "Roadtoladakh",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "title": {
+          "type": "string",
+          "description": "title of the article"
+        },
+        "content": {
+          "type": "string",
+          "description": "content of the article"
+        },
+        "slug": {
+          "type": "string",
+          "description": "name"
+        },
+        "thumbnail": {
+          "$ref": "#/definitions/Document"
+        },
+        "banner": {
+          "$ref": "#/definitions/Document"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Document"
+          }
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        }
+      }
+    },
+    "Slider": {
+      "type": "object",
+      "description": "Slider",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "title": {
+          "type": "string",
+          "description": "title of the article"
+        },
+        "content": {
+          "type": "string",
+          "description": "content of the article"
+        },
+        "image": {
+          "$ref": "#/definitions/Document"
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        }
+      }
+    },
+    "Agenda": {
+      "type": "object",
+      "description": "Agenda",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "title": {
+          "type": "string",
+          "description": "title of the agenda"
+        },
+        "content": {
+          "type": "string",
+          "description": "content of the agenda"
+        },
+        "date": {
+          "type": "string",
+          "format": "Date",
+          "readOnly": true
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "gazzeted_holiday",
+            "restricted_holiday",
+            "weeky_off"
+          ],
+          "default": "weekly_off"
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        }
+      }
+    },
+    "Business": {
+      "type": "object",
+      "description": "Business",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "description": "name"
+        },
+        "city": {
+          "type": "string",
+          "description": "city"
+        },
+        "address": {
+          "type": "string",
+          "description": "name"
+        },
+        "lat": {
+          "type": "float",
+          "description": "lat"
+        },
+        "lng": {
+          "type": "float",
+          "description": "lng"
+        },
+        "status": {
+          "type": "string",
+          "default": "new",
+          "enum": [
+            "new",
+            "registering",
+            "waiting_form",
+            "under_review",
+            "waiting_payment",
+            "ignoring_guidelines",
+            "document_missing",
+            "valid",
+            "rejected"
+          ]
+        },
+        "rejectedReason": {
+          "type": "string"
+        },
+        "documentStatus": {
+          "type": "string",
+          "default": "new",
+          "enum": [
+            "pending",
+            "valid",
+            "refused"
+          ]
+        },
+        "displayStatus": {
+          "type": "string",
+          "default": "new",
+          "enum": [
+            "pending",
+            "valid",
+            "refused"
+          ]
+        },
+        "price": {
+          "type": "float",
+          "description": "price"
+        },
+        "business_category_id": {
+          "type": "string"
+        },
+        "subtype": {
+          "type": "string",
+          "enum": [
+            "restaurant",
+            "guest_blouse",
+            "resort",
+            "hotel"
+          ]
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "float",
+          "description": "comment"
+        },
+        "thumbnail": {
+          "$ref": "#/definitions/Document"
+        },
+        "banner": {
+          "$ref": "#/definitions/Document"
+        },
+        "banner_id": {
+          "type": "string"
+        },
+        "thumbnail_id": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Document"
+          }
+        },
+        "price_start": {
+          "type": "float",
+          "description": "price"
+        },
+        "property_name": {
+          "type": "string",
+          "description": "name of property"
+        },
+        "website_address": {
+          "type": "string",
+          "description": "website_address"
+        },
+        "about": {
+          "type": "string",
+          "description": "about"
+        },
+        "address_business": {
+          "type": "string",
+          "description": "address_business"
+        },
+        "nearby": {
+          "type": "string",
+          "description": "nearby"
+        },
+        "room_option_id": {
+          "type": "string"
+        },
+        "room_option": {
+          "$ref": "#/definitions/RoomOption"
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        }
+      }
+    },
+    "Boption": {
+      "type": "object",
+      "description": "Boption",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "description": "name"
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp"
+        }
+      }
+    },
+    "RequiredDocument": {
+      "type": "object",
+      "description": "RequiredDocument",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "description": "name"
+        },
+        "price": {
+          "type": "float",
+          "description": "price"
+        },
+        "business_category_id": {
+          "type": "string"
+        },
+        "ownership": {
+          "type": "boolean"
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        }
+      }
+    },
+    "BusinessRequiredDocument": {
+      "type": "object",
+      "description": "BusinessRequiredDocument",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "requiredDocumentId": {
+          "type": "string",
+          "description": "requiredDocumentId"
+        },
+        "businessId": {
+          "type": "string",
+          "description": "businessId"
+        },
+        "path": {
+          "type": "string"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "mime_type": {
+          "type": "string"
+        },
+        "extension": {
+          "type": "string"
+        },
+        "refusedReason": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "valid",
+            "refused",
+            "pending"
+          ]
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        }
+      }
+    },
+    "BusinessCategory": {
+      "type": "object",
+      "description": "BusinessCategory",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "parent_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "name"
+        },
+        "ableToTransfertRegistration": {
+          "type": "boolean"
+        },
+        "createPropertyListing": {
+          "type": "boolean"
+        },
+        "register_fee": {
+          "type": "float",
+          "description": "price"
+        },
+        "renewal_fee": {
+          "type": "float",
+          "description": "price"
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        }
+      }
+    },
+    "Calendar": {
+      "type": "object",
+      "description": "Calendar",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "date": {
+          "type": "string",
+          "description": "date"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "gazetted_holiday",
+            "restricted_holiday"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "description": "title"
+        }
+      }
+    },
+    "RoomOption": {
+      "type": "object",
+      "description": "RoomOption",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp when the token will expire in seconds since UNIX epoch",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp when the token will expire in seconds since UNIX epoch",
+          "readOnly": true
+        }
+      }
+    },
+    "Video": {
+      "type": "object",
+      "description": "Video",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "type": {
+          "type": "string",
+          "description": "type"
+        },
+        "url": {
+          "type": "string",
+          "description": "url"
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp"
+        }
+      }
+    },
+    "BusinessTransfert": {
+      "type": "object",
+      "description": "BusinessTransfert",
+      "tags": [
+        "Transfert"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "businessId": {
+          "type": "integer"
+        },
+        "oldOwner": {
+          "type": "string",
+          "description": "the old owner"
+        },
+        "oldEmail": {
+          "type": "string",
+          "description": "the old email"
+        },
+        "oldPhone": {
+          "type": "string",
+          "description": "the old phone"
+        },
+        "newOwner": {
+          "type": "string",
+          "description": "the new owner"
+        },
+        "newEmail": {
+          "type": "string",
+          "description": "the new Email"
+        },
+        "newPhone": {
+          "type": "string",
+          "description": "the new phone"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "valid",
+            "refused",
+            "pending"
+          ]
+        },
+        "refusedReason": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        }
+      }
+    },
+    "BusinessTransfertRequiredDocument": {
+      "type": "object",
+      "description": "BusinessTransfertRequiredDocument",
+      "tags": [
+        "Transfert"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "requiredDocumentId": {
+          "type": "string",
+          "description": "requiredDocumentId"
+        },
+        "businessId": {
+          "type": "string",
+          "description": "businessId"
+        },
+        "transfertId": {
+          "type": "string",
+          "description": "transfertId"
+        },
+        "path": {
+          "type": "string"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "mime_type": {
+          "type": "string"
+        },
+        "extension": {
+          "type": "string"
+        },
+        "refusedReason": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "valid",
+            "refused",
+            "pending"
+          ]
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        }
+      }
+    },
+    "Gallery": {
+      "type": "object",
+      "description": "GalleryCategory",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "document_id": {
+          "type": "integer",
+          "description": "document id"
+        },
+        "category_id": {
+          "type": "integer",
+          "description": "category id"
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp when the token will expire in seconds since UNIX epoch",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp when the token will expire in seconds since UNIX epoch",
+          "readOnly": true
+        }
+      }
+    },
+    "GalleryCategory": {
+      "type": "object",
+      "description": "GalleryCategory",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "description": "name"
+        },
+        "slug": {
+          "type": "string",
+          "description": "name"
+        },
+        "updated_at": {
+          "type": "integer",
+          "format": "Timestamp when the token will expire in seconds since UNIX epoch",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp when the token will expire in seconds since UNIX epoch",
+          "readOnly": true
+        }
+      }
+    },
+    "StaticPage": {
+      "type": "object",
+      "description": "StaticPage",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string",
+          "description": "content"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "faq"
+          ],
+          "default": "faq"
+        },
+        "created_at": {
+          "type": "integer",
+          "format": "Timestamp",
+          "readOnly": true
+        }
+      }
+    }
+  },
+  "paths": {
+    "/login": {
+      "post": {
+        "summary": "Login a user",
+        "description": "Login a user",
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "login",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "proUser",
+            "description": "the user to login",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Connected, get credentials",
+            "schema": {
+              "$ref": "#/definitions/AuthCredentials"
+            }
+          },
+          "404": {
+            "description": "The user has not been found"
+          }
+        }
+      }
+    },
+    "/regenerate": {
+      "get": {
+        "summary": "Regenerate the current auth token",
+        "description": "Regenerate a new auth token in case of the current token has expired. Check the existance of the user.",
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "regenerate",
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "expire_in",
+            "in": "query",
+            "description": "Optional parameters to set the expiration time (in seconds)",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AuthCredentials"
+            }
+          },
+          "404": {
+            "description": "An error occured with the credentials, user has been removed or deactivated"
+          }
+        }
+      }
+    },
+    "/forgot": {
+      "post": {
+        "summary": "Restore access to a forgotten user",
+        "description": "Assign new temporary password and send it by email to the user. On a new connection with this temporary password, the temporary is assigned to regular, and temporary is removed.",
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "forgot",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "the user email to launch the forgotten password process",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Always respond a success message, to not leak unexisting or existing email in DB."
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "summary": "Register a user",
+        "description": "Register a user",
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "register",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "the user to register",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "phone": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Connected, get credentials",
+            "schema": {
+              "$ref": "#/definitions/AuthCredentials"
+            }
+          },
+          "404": {
+            "description": "The user has not been found"
+          }
+        }
+      }
+    },
+    "/registerPro": {
+      "post": {
+        "summary": "Register a pro user",
+        "description": "Register a pro user",
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "registerPro",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "the user to registerPro",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "phone": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Connected, get credentials",
+            "schema": {
+              "$ref": "#/definitions/AuthCredentials"
+            }
+          },
+          "404": {
+            "description": "The user has not been found"
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allCategories",
+        "tags": [
+          "Category"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/Category"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a document",
+        "description": "Creates a document.",
+        "operationId": "createCategory",
+        "tags": [
+          "Category"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The document to create",
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/category/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getCategory",
+        "tags": [
+          "Category"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Category ID.",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a Category by ID",
+        "description": "Updates a Category by ID.",
+        "operationId": "updateCategory",
+        "tags": [
+          "Category"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Category ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteCategory",
+        "tags": [
+          "Category"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Category ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Returns a list of users.",
+        "description": "Get users corresponding to query.",
+        "operationId": "getUsers",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "role",
+            "in": "query",
+            "description": "Search by role"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the user",
+            "type": "string"
+          },
+          {
+            "name": "employee_id",
+            "in": "query",
+            "description": "SuperUser can filter all nurse by employee_id",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the user. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort users. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "unaffected",
+            "in": "query",
+            "description": "set true if you want only to return all unaffected users (for nurses)",
+            "type": "boolean"
+          },
+          {
+            "name": "archived",
+            "in": "query",
+            "description": "set true if you want only to return all deactivated users (for nurses), false for all activated, leave blank for all",
+            "type": "boolean"
+          },
+          {
+            "name": "lastUpdated",
+            "in": "query",
+            "description": "Unix timestamp to use for sync",
+            "type": "string"
+          },
+          {
+            "name": "deleted",
+            "in": "query",
+            "description": "if provided, api return with trashed collection",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/User"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a user",
+        "description": "Creates a user.",
+        "operationId": "createUser",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The user to create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "summary": "Gets a user by ID",
+        "description": "Gets a user by ID, with all data excepts the password",
+        "operationId": "getUser",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a User by ID",
+        "description": "Updates a User by ID.",
+        "operationId": "updateUser",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteUser",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/articles": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allArticles",
+        "tags": [
+          "Article"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "must_to_do",
+            "in": "query",
+            "description": "set if you want to return all must to do articles",
+            "type": "string"
+          },
+          {
+            "name": "excerpt",
+            "in": "query",
+            "description": "if exist we excerp the content",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/Article"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a document",
+        "description": "Creates a document.",
+        "operationId": "createArticle",
+        "tags": [
+          "Article"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The document to create",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/article/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getArticle",
+        "tags": [
+          "Article"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Article ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a Article by ID",
+        "description": "Updates a Article by ID.",
+        "operationId": "updateArticle",
+        "tags": [
+          "Article"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Article ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteArticle",
+        "tags": [
+          "Article"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Article ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/news": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allNews",
+        "tags": [
+          "News"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "excerpt",
+            "in": "query",
+            "description": "if exist we excerp the content",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/News"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a document",
+        "description": "Creates a document.",
+        "operationId": "createNews",
+        "tags": [
+          "News"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The document to create",
+            "schema": {
+              "$ref": "#/definitions/News"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/News"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/news/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getNews",
+        "tags": [
+          "News"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "News ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/News"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a News by ID",
+        "description": "Updates a News by ID.",
+        "operationId": "updateNews",
+        "tags": [
+          "News"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "News ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/News"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/News"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteNews",
+        "tags": [
+          "News"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "News ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/roadtoladakh": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allRoadtoladakh",
+        "tags": [
+          "Roadtoladakh"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "excerpt",
+            "in": "query",
+            "description": "if exist we excerp the content",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/Roadtoladakh"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a document",
+        "description": "Creates a document.",
+        "operationId": "createRoadtoladakh",
+        "tags": [
+          "Roadtoladakh"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The document to create",
+            "schema": {
+              "$ref": "#/definitions/Roadtoladakh"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Roadtoladakh"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/roadtoladakh/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getRoadtoladakh",
+        "tags": [
+          "Roadtoladakh"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Roadtoladakh ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Roadtoladakh"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a Roadtoladakh by ID",
+        "description": "Updates a Roadtoladakh by ID.",
+        "operationId": "updateRoadtoladakh",
+        "tags": [
+          "Roadtoladakh"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Roadtoladakh ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/Roadtoladakh"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Roadtoladakh"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteRoadtoladakh",
+        "tags": [
+          "Roadtoladakh"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Roadtoladakh ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/requiredDocuments": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allRequiredDocuments",
+        "tags": [
+          "RequiredDocument"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "excerpt",
+            "in": "query",
+            "description": "if exist we excerp the content",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/RequiredDocument"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a document",
+        "description": "Creates a document.",
+        "operationId": "createRequiredDocument",
+        "tags": [
+          "RequiredDocument"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The document to create",
+            "schema": {
+              "$ref": "#/definitions/RequiredDocument"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/RequiredDocument"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/requiredDocument/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getRequiredDocument",
+        "tags": [
+          "RequiredDocument"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "RequiredDocument ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/RequiredDocument"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a RequiredDocument by ID",
+        "description": "Updates a RequiredDocument by ID.",
+        "operationId": "updateRequiredDocument",
+        "tags": [
+          "RequiredDocument"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "RequiredDocument ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/RequiredDocument"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/RequiredDocument"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteRequiredDocument",
+        "tags": [
+          "RequiredDocument"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "RequiredDocument ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/sliders": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allSliders",
+        "tags": [
+          "Slider"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "excerpt",
+            "in": "query",
+            "description": "if exist we excerp the content",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/Slider"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a document",
+        "description": "Creates a document.",
+        "operationId": "createSlider",
+        "tags": [
+          "Slider"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The document to create",
+            "schema": {
+              "$ref": "#/definitions/Slider"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Slider"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/slider/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getSlider",
+        "tags": [
+          "Slider"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Slider ID.",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Slider"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a Slider by ID",
+        "description": "Updates a Slider by ID.",
+        "operationId": "updateSlider",
+        "tags": [
+          "Slider"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Slider ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/Slider"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Slider"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteSlider",
+        "tags": [
+          "Slider"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Slider ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/upload": {
+      "post": {
+        "summary": "Upload a file",
+        "description": "Upload a file",
+        "operationId": "uploadFile",
+        "tags": [
+          "Upload"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "The uploaded file data",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "name": "name",
+            "in": "header",
+            "description": "final name for this file",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "header",
+            "description": "type",
+            "enum": [
+              "banner",
+              "gallery",
+              "thumbnail",
+              "other"
+            ],
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "path",
+            "in": "header",
+            "description": "Final path for this file",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "maxDim",
+            "in": "header",
+            "type": "integer",
+            "description": "Maximum dimension (width and / or height) of the source image"
+          },
+          {
+            "name": "generateThumb",
+            "in": "header",
+            "type": "boolean",
+            "description": "Indicate if a thumb must be generated. If no maxThumbDim provided, default value will be 128px"
+          },
+          {
+            "name": "maxThumbDim",
+            "in": "header",
+            "type": "integer",
+            "description": "Maximum dimension (width and / or height) of the thumb image"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/ajaxUpload": {
+      "post": {
+        "summary": "Upload a file from ajax",
+        "description": "Upload a file from ajax",
+        "operationId": "uploadAjaxFile",
+        "tags": [
+          "Upload"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "file_data",
+            "in": "formData",
+            "description": "The uploaded file data",
+            "type": "file"
+          },
+          {
+            "name": "fileId",
+            "in": "formData",
+            "description": "real file name",
+            "type": "string"
+          },
+          {
+            "name": "requiredDocumentId",
+            "in": "formData",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/agendas": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allAgendas",
+        "tags": [
+          "Agenda"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "must_to_do",
+            "in": "query",
+            "description": "set if you want to return all must to do articles",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/Agenda"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a document",
+        "description": "Creates a document.",
+        "operationId": "createAgenda",
+        "tags": [
+          "Agenda"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The document to create",
+            "schema": {
+              "$ref": "#/definitions/Agenda"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Agenda"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/agenda/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getAgenda",
+        "tags": [
+          "Agenda"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Agenda ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Agenda"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a Agenda by ID",
+        "description": "Updates a Agenda by ID.",
+        "operationId": "updateAgenda",
+        "tags": [
+          "Agenda"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Agenda ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/Agenda"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Agenda"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteAgenda",
+        "tags": [
+          "Agenda"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Agenda ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/businesses": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allBusinesses",
+        "tags": [
+          "Business"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "filter by status",
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "filter by status",
+            "type": "string"
+          },
+          {
+            "name": "business_category_id",
+            "in": "query",
+            "description": "filter by business_category_id",
+            "type": "string"
+          },
+          {
+            "name": "business_subcategory_id",
+            "in": "query",
+            "description": "filter by business_subcategory_id",
+            "type": "string"
+          },
+          {
+            "name": "created_at",
+            "in": "query",
+            "description": "filter by created_at registered",
+            "type": "string"
+          },
+          {
+            "name": "excerpt",
+            "in": "query",
+            "description": "if exist we excerp the content",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/Business"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a document",
+        "description": "Creates a document.",
+        "operationId": "createBusiness",
+        "tags": [
+          "Business"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The document to create",
+            "schema": {
+              "$ref": "#/definitions/Business"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Business"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/business/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getBusiness",
+        "tags": [
+          "Business"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Business ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Business"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a Business by ID",
+        "description": "Updates a Business by ID.",
+        "operationId": "updateBusiness",
+        "tags": [
+          "Business"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Business ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/Business"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Business"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteBusiness",
+        "tags": [
+          "Business"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Business ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/business/{id}/updateStatus": {
+      "put": {
+        "summary": "Updates a Business by ID",
+        "description": "Updates a Business by ID.",
+        "operationId": "updateBusinessStatus",
+        "tags": [
+          "Business"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Business ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "registering",
+                    "waiting_form",
+                    "under_review",
+                    "waiting_payment",
+                    "ignoring_guidelines",
+                    "document_missing",
+                    "valid"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Business"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/business/{id}/approve": {
+      "put": {
+        "summary": "Approve business",
+        "description": "Approve business by ID.",
+        "operationId": "approveBusiness",
+        "tags": [
+          "Business"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Business ID.",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Business"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/business/{id}/ajaxUpload": {
+      "post": {
+        "summary": "Upload a file from ajax",
+        "description": "Upload a file from ajax",
+        "operationId": "uploadAjaxFileBusiness",
+        "tags": [
+          "Business"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Business ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "file_data",
+            "in": "formData",
+            "description": "The uploaded file data",
+            "type": "file"
+          },
+          {
+            "name": "fileId",
+            "in": "formData",
+            "description": "real file name",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/businessStat": {
+      "get": {
+        "summary": "business stats",
+        "description": "business stats",
+        "operationId": "statBusiness",
+        "tags": [
+          "Business"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/business/{id}/reject": {
+      "put": {
+        "summary": "Reject business",
+        "description": "Reject business by ID.",
+        "operationId": "rejectBusiness",
+        "tags": [
+          "Business"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Business ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "rejectedReason": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Business"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/boptions": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allBoptions",
+        "tags": [
+          "Boption"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "must_to_do",
+            "in": "query",
+            "description": "set if you want to return all must to do articles",
+            "type": "string"
+          },
+          {
+            "name": "excerpt",
+            "in": "query",
+            "description": "if exist we excerp the content",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/Boption"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a document",
+        "description": "Creates a document.",
+        "operationId": "createBoption",
+        "tags": [
+          "Boption"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The document to create",
+            "schema": {
+              "$ref": "#/definitions/Boption"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Boption"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/boption/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getBoption",
+        "tags": [
+          "Boption"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Boption ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Boption"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a Boption by ID",
+        "description": "Updates a Boption by ID.",
+        "operationId": "updateBoption",
+        "tags": [
+          "Boption"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Boption ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/Boption"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Boption"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteBoption",
+        "tags": [
+          "Boption"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Boption ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/calendars": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allCalendars",
+        "tags": [
+          "Calendar"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "must_to_do",
+            "in": "query",
+            "description": "set if you want to return all must to do articles",
+            "type": "string"
+          },
+          {
+            "name": "excerpt",
+            "in": "query",
+            "description": "if exist we excerp the content",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/Calendar"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a document",
+        "description": "Creates a document.",
+        "operationId": "createCalendar",
+        "tags": [
+          "Calendar"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The document to create",
+            "schema": {
+              "$ref": "#/definitions/Calendar"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Calendar"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/calendar/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getCalendar",
+        "tags": [
+          "Calendar"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Calendar ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Calendar"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a Calendar by ID",
+        "description": "Updates a Calendar by ID.",
+        "operationId": "updateCalendar",
+        "tags": [
+          "Calendar"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Calendar ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/Calendar"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Calendar"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteCalendar",
+        "tags": [
+          "Calendar"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Calendar ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/businessCategories": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allBusiness_categories",
+        "tags": [
+          "BusinessCategory"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "parent_id",
+            "in": "query",
+            "description": "set id or null if you want all parent",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/BusinessCategory"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a document",
+        "description": "Creates a document.",
+        "operationId": "createBusinessCategory",
+        "tags": [
+          "BusinessCategory"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The document to create",
+            "schema": {
+              "$ref": "#/definitions/BusinessCategory"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BusinessCategory"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/businessCategory/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getBusinessCategory",
+        "tags": [
+          "BusinessCategory"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "BusinessCategory ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BusinessCategory"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a BusinessCategory by ID",
+        "description": "Updates a BusinessCategory by ID.",
+        "operationId": "updateBusinessCategory",
+        "tags": [
+          "BusinessCategory"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "BusinessCategory ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/BusinessCategory"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BusinessCategory"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteBusinessCategory",
+        "tags": [
+          "BusinessCategory"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "BusinessCategory ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/videos": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allVideos",
+        "tags": [
+          "Video"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/Video"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a document",
+        "description": "Creates a document.",
+        "operationId": "createVideo",
+        "tags": [
+          "Video"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The document to create",
+            "schema": {
+              "$ref": "#/definitions/Video"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Video"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/video/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getVideo",
+        "tags": [
+          "Video"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Video ID.",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Video"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a Video by ID",
+        "description": "Updates a Video by ID.",
+        "operationId": "updateVideo",
+        "tags": [
+          "Video"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Video ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/Video"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Video"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteVideo",
+        "tags": [
+          "Video"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Video ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/businessRequiredDocuments": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allBusinessRequiredDocuments",
+        "tags": [
+          "BusinessRequiredDocument"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "businessID",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/RequiredDocument"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      }
+    },
+    "/businessRequiredDocument/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getBusinessRequiredDocument",
+        "tags": [
+          "BusinessRequiredDocument"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "BusinessRequiredDocument ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BusinessRequiredDocument"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a BusinessRequiredDocument by ID",
+        "description": "Updates a BusinessRequiredDocument by ID.",
+        "operationId": "updateBusinessRequiredDocument",
+        "tags": [
+          "BusinessRequiredDocument"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "BusinessRequiredDocument ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/BusinessRequiredDocument"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BusinessRequiredDocument"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteBusinessRequiredDocument",
+        "tags": [
+          "BusinessRequiredDocument"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "BusinessRequiredDocument ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/businessRequiredDocument/{id}/approve": {
+      "put": {
+        "summary": "Approve business",
+        "description": "Approve business by ID.",
+        "operationId": "approveBusinessRequiredDocument",
+        "tags": [
+          "BusinessRequiredDocument"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "BusinessRequiredDocument ID.",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BusinessRequiredDocument"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/businessRequiredDocument/{id}/reject": {
+      "put": {
+        "summary": "Reject business",
+        "description": "Reject business by ID.",
+        "operationId": "rejectBusinessRequiredDocument",
+        "tags": [
+          "BusinessRequiredDocument"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "BusinessRequiredDocument ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "rejectedReason": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BusinessRequiredDocument"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/businessTransferts": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allBusinessTransferts",
+        "tags": [
+          "BusinessTransfert"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "excerpt",
+            "in": "query",
+            "description": "if exist we excerp the content",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/BusinessTransfert"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      }
+    },
+    "/businessTransfert/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getBusinessTransfert",
+        "tags": [
+          "BusinessTransfert"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "BusinessTransfert ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BusinessTransfert"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a BusinessTransfert by ID",
+        "description": "Updates a BusinessTransfert by ID.",
+        "operationId": "updateBusinessTransfert",
+        "tags": [
+          "BusinessTransfert"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "BusinessTransfert ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/BusinessTransfert"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BusinessTransfert"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteBusinessTransfert",
+        "tags": [
+          "BusinessTransfert"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "BusinessTransfert ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/businessTransfert/{id}/approve": {
+      "put": {
+        "summary": "Approve business",
+        "description": "Approve business by ID.",
+        "operationId": "approveBusinessTransfert",
+        "tags": [
+          "BusinessTransfert"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "BusinessTransfert ID.",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BusinessTransfert"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/businessTransfert/{id}/reject": {
+      "put": {
+        "summary": "Reject business",
+        "description": "Reject business by ID.",
+        "operationId": "rejectBusinessTransfert",
+        "tags": [
+          "BusinessTransfert"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "BusinessTransfert ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "refuseddReason": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/BusinessTransfert"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/businessTransfertRequiredDocuments": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allBusinessTransfertRequiredDocuments",
+        "tags": [
+          "BusinessTransfert"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "businessID",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/RequiredDocument"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      }
+    },
+    "/galleries": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allGalleries",
+        "tags": [
+          "Gallery"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "must_to_do",
+            "in": "query",
+            "description": "set if you want to return all must to do articles",
+            "type": "string"
+          },
+          {
+            "name": "excerpt",
+            "in": "query",
+            "description": "if exist we excerp the content",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/Gallery"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a document",
+        "description": "Creates a document.",
+        "operationId": "createGallery",
+        "tags": [
+          "Gallery"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The document to create",
+            "schema": {
+              "$ref": "#/definitions/Gallery"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Gallery"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/gallery/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getGallery",
+        "tags": [
+          "Gallery"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Gallery ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Gallery"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a Gallery by ID",
+        "description": "Updates a Gallery by ID.",
+        "operationId": "updateGallery",
+        "tags": [
+          "Gallery"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Gallery ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/Gallery"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Gallery"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteGallery",
+        "tags": [
+          "Gallery"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Gallery ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/uploadGallery": {
+      "post": {
+        "summary": "Upload a file",
+        "description": "Upload a file",
+        "operationId": "uploadGallery",
+        "tags": [
+          "Gallery"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "The uploaded file data",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "name": "name",
+            "in": "header",
+            "description": "final name for this file",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "header",
+            "description": "type",
+            "enum": [
+              "banner",
+              "gallery",
+              "thumbnail",
+              "other"
+            ],
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "path",
+            "in": "header",
+            "description": "Final path for this file",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "categoryId",
+            "in": "header",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/galleryCategories": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allgalleryCategories",
+        "tags": [
+          "Gallery"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/GalleryCategory"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      }
+    },
+    "/staticPages": {
+      "get": {
+        "summary": "Returns a list of documents.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allStaticPages",
+        "tags": [
+          "StaticPage"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "must_to_do",
+            "in": "query",
+            "description": "set if you want to return all must to do articles",
+            "type": "string"
+          },
+          {
+            "name": "excerpt",
+            "in": "query",
+            "description": "if exist we excerp the content",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/StaticPage"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a document",
+        "description": "Creates a document.",
+        "operationId": "createStaticPage",
+        "tags": [
+          "StaticPage"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The document to create",
+            "schema": {
+              "$ref": "#/definitions/StaticPage"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StaticPage"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/staticPage/{id}": {
+      "get": {
+        "summary": "Gets a doc by ID",
+        "description": "Gets a doc by ID, with all data excepts the password",
+        "operationId": "getStaticPage",
+        "tags": [
+          "StaticPage"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "StaticPage ID. If called from the application, can be \"me\".",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StaticPage"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a StaticPage by ID",
+        "description": "Updates a StaticPage by ID.",
+        "operationId": "updateStaticPage",
+        "tags": [
+          "StaticPage"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "StaticPage ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "user",
+            "description": "The user to update",
+            "schema": {
+              "$ref": "#/definitions/StaticPage"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StaticPage"
+            }
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a user by ID",
+        "description": "Deletes a user by ID",
+        "operationId": "deleteStaticPage",
+        "tags": [
+          "StaticPage"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "StaticPage ID",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/misc/informationcenters": {
+      "get": {
+        "summary": "Returns a list of information centers.",
+        "description": "Get documents corresponding to query.",
+        "operationId": "allInformationCenters",
+        "tags": [
+          "Misc"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "Max number of elements to return",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page from where to start returning elements",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant",
+            "type": "string"
+          },
+          {
+            "name": "searchValue",
+            "in": "query",
+            "description": "Value to search on the ordonnance",
+            "type": "string"
+          },
+          {
+            "name": "searchFields",
+            "in": "query",
+            "description": "Fields on where to search on the ordonnance. There must be comma delimited.",
+            "type": "string"
+          },
+          {
+            "name": "subCategory",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "locationCategory",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "locationSubCategory",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "activityCategory",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/Article"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      }
+    },
+    "/reorderListArticle": {
+      "post": {
+        "summary": "Reorder List Article.",
+        "description": "reorder List Article",
+        "operationId": "reorderListArticle",
+        "tags": [
+          "Menu"
+        ],
+        "security": [
+          {
+            "UserTokenHeader": []
+          },
+          {
+            "UserTokenQuery": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "data",
+            "type": "object"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "description": "Max elements to return"
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page asked"
+                },
+                "pages": {
+                  "type": "integer",
+                  "description": "Total pages available"
+                },
+                "rows": {
+                  "type": "array",
+                  "description": "Elements asked",
+                  "items": {
+                    "$ref": "#/definitions/Article"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "description": "Total of elements corresponding to the query without limits."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unexpected error arrived"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "UnauthorizedError": {
+      "description": "Authorization Token missing",
+      "headers": {
+        "WWW_Authenticate": {
+          "type": "string"
+        }
+      }
+    },
+    "NotFound": {
+      "description": "The item has not been found"
+    }
+  }
+}

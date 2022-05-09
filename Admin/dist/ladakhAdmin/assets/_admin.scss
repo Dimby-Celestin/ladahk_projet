@@ -1,0 +1,191 @@
+  
+/* admin */
+#admin {
+  .title {
+    color: #212020;
+    font-size: 36px;
+    font-weight: 900;
+    font-family: sourceSansPro-regular;
+    letter-spacing: normal;
+    text-align: left;   
+  }
+  .title-2 {
+    color: #212020;
+    font-size: 22px;
+    font-weight: 600;
+    font-family: sourceSansPro-regular;
+    letter-spacing: normal;
+    text-align: left;   
+  }  
+  .s-title {
+    color: #212020;
+    font-size: 14px;
+    font-weight: 100;
+    font-family: futura-book;
+    letter-spacing: normal;
+    text-align: left;   
+  }
+  .btn-outline-warning {
+    font-size: 14px;
+    font-weight: 300;
+    font-family: futura-bold;
+    letter-spacing: normal;
+    border-radius: 8px;
+    border-color: #e63f0d !important;
+    color: #e63f0d !important;
+    text-transform: uppercase !important;
+  }
+  .btn-warning {
+    font-size: 14px;
+    font-weight: 300;
+    font-family: sourceSansPro-regular;
+    letter-spacing: normal;
+    border-radius: 8px;
+    border-color: #e63f0d !important;
+    background: #e63f0d !important;
+    color: #fff !important;
+    text-transform: uppercase !important;
+    height: 35px !important;
+    padding: 7px 22px !important;
+  }
+  .btn-outline-dark {
+    font-size: 14px;
+    font-weight: 300;
+    font-family: futura-bold;
+    letter-spacing: normal;
+    border-radius: 8px;
+    border-color: #707070 !important;
+    color: #101010 !important;
+    text-transform: uppercase !important;
+  }
+  th, td, .nbr {
+    font-size: 14px;
+    font-weight: 300;
+    font-family: futura-bold;
+    letter-spacing: normal;
+    color: #212020 !important;
+  }
+  .nbr.active {
+    color: #e63f0d !important;
+  }
+  .search {
+    height: 35px !important;
+    border: 1px solid #707070 !important;
+    color: #212020 !important;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 300;
+    font-family: futura-bold;
+    letter-spacing: normal;
+  }
+  .border-top-0 {
+    border-top: 0px !important;
+  }
+  .border-bottom-0 {
+    border-bottom: 0px !important;
+  }
+
+
+  .footer-pager {
+    h4 {
+        font-family: futura-light-bt !important;
+        font-size: 14px;
+        color: #5a5757;
+    }
+    .pagination {
+        width: fit-content;
+        .page-item {
+            margin-left: 6px !important;
+            margin-right: 6px !important;            
+        }
+        .page-link {
+            color: #191818;
+            font-family: futura-book !important;
+            font-weight: 600 !important;
+            font-size: 20px !important;
+            border-radius: 6px !important;
+            cursor: pointer !important;
+        }
+        .page-link.active {
+            color: #e63f0d !important;
+            font-family: futura-book !important;
+            font-weight: 600 !important;
+            font-size: 20px !important;
+            border: 1px solid #e63f0d !important;
+            border-radius: 6px !important;
+        }
+        .page-link.next, .page-link.prev {
+            border: 0 !important;
+            background: transparent !important;
+        }
+    }
+  }
+
+  .bord {
+    border-radius: 24px;
+    border: solid 1px #707070;
+    padding: 15px;
+    width: 300px;
+    height: 130px;
+    color: #191818;
+    margin-bottom: 15px;
+    h4 {
+      font-size: 20px;
+      font-weight: 800 !important;
+      color: #191818 !important;
+      font-family: sourceSansPro-regular;
+    }
+    p {
+      font-size: 16px;
+      font-weight: 100 !important;
+      font-family: SourceSansPro-Light;
+    }
+  }
+
+  .popup {
+    background: #fff !important;
+  }
+  label {
+    font-size: 18px;
+    font-weight: 800 !important;
+    font-family: sourceSansPro-regular;
+    color: #191818;
+    span {
+      font-family: SourceSansPro-Light !important;
+      font-weight: 100 !important;
+      color: #707070;
+    }
+  }
+  .btn-large {
+    padding: 7px 42px !important;
+  }
+  .capitalize {
+    text-transform: capitalize !important;
+  }
+  .font-30 {
+    font-size: 30px !important;
+  }
+  .close {
+    color: #000 !important;
+    opacity: 1 !important;
+    font-size: 30px !important;
+  }
+  .form-control {
+    border-radius: 0px !important;
+  }
+  .img-slider {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .img-categorie {
+    height: 55px;
+    width: auto;
+  }
+}
+.has-error {
+  ng-select {
+    border: 1px solid #e00c0c !important;
+    border-color: #e00c0c !important;
+  }
+}

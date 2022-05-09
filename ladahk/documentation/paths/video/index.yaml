@@ -1,0 +1,75 @@
+get:
+  summary: Gets a doc by ID
+  description: Gets a doc by ID, with all data excepts the password
+  operationId: getVideo
+  tags:
+    - Video
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: id
+      in: path
+      description: Video ID.
+      type: string
+      required: true
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/Video'
+    400:
+      $ref: '#/responses/UnauthorizedError'
+put:
+  summary: Updates a Video by ID
+  description: Updates a Video by ID.
+  operationId: updateVideo
+  tags:
+    - Video
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: id
+      in: path
+      description: Video ID. If called from the application, can be "me".
+      type: string
+      required: true
+    - in: body
+      name: user
+      description: The user to update
+      schema:
+        $ref: "#/definitions/Video"
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/Video'
+    400:
+      $ref: '#/responses/UnauthorizedError'
+delete:
+  summary: Deletes a user by ID
+  description: Deletes a user by ID
+  operationId: deleteVideo
+  tags:
+    - Video
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: id
+      in: path
+      description: Video ID
+      type: string
+      required: true
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+    400:
+      $ref: '#/responses/UnauthorizedError'

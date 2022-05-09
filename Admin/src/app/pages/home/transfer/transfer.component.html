@@ -1,0 +1,47 @@
+<div class="container" id="admin" *ngIf="!isLoading">
+    <h2>List business transfert</h2>
+    <button (click)="back()" class="btn btn-secondary btn-large capitalize mt-2">
+        <i class="fa fa-arrow-left"></i> Back
+      </button> 
+  <p class="title-2">
+    <span class="s-title text-center"></span>
+  </p>  
+  <div class="progress-loader" [hidden]="!isLoading">
+    <img src="assets/images/loadbk.gif">
+</div>    
+    <div class="col-md-12 col-md-10 content table-responsive mt-4 ">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="text-left border-top-0">S.No</th>
+              <th class="text-left border-top-0">Name </th>
+              <th class="text-left border-top-0">Old Owner </th>
+              <th class="text-left border-top-0">Old Email </th>
+              <th class="text-left border-top-0">Old Phone </th>
+              <th class="text-left border-top-0">New Owner </th>
+              <th class="text-left border-top-0">New Email </th>
+              <th class="text-left border-top-0">New Phone </th>
+              <th class="text-left border-top-0" style="width: 200px;"></th>
+            </tr>
+          </thead>
+          <tbody class="pt-3" *ngIf="rows && rows.length">
+            <tr *ngFor="let d of rows" >
+              <td class="text-left">{{d.id}}</td>
+              <td class="text-left">{{getBusiness(d.businessId)}}</td>
+              <td class="text-left">{{d.oldOwner}}</td>
+              <td class="text-left">{{d.oldEmail}}</td>
+              <td class="text-left">{{d.oldPhone}}</td>
+              <td class="text-left">{{d.newOwner}}</td>
+              <td class="text-left">{{d.newEmail}}</td>
+              <td class="text-left">{{d.newPhone}}</td>
+              <!----td class="text-left">{{d.}}</td-->
+              <td class="td-actions">
+                  <button  [routerLink]="['/home/edit/'+ d.id]" class="btn btn-warning btn-large capitalize mt-2" color="accent" >
+                    voir 
+               </button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</div>    

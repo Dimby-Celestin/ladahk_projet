@@ -1,0 +1,28 @@
+post:
+  summary: Login a user
+  description: Login a user
+  tags: 
+    - Authentication
+  operationId: login
+  consumes:
+    - application/json
+  parameters:
+    - in: body
+      name: proUser
+      description: the user to login
+      schema:
+        type: object
+        properties: 
+          email: 
+            type: string
+          password:
+            type: string
+  produces:
+    - application/json
+  responses:
+    200:
+      description: Connected, get credentials
+      schema:
+        $ref: '#/definitions/AuthCredentials'
+    404:
+      description: The user has not been found

@@ -1,0 +1,51 @@
+<div class="main-content container pb-3" id="admin">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <h4 class="title font-30">News/Updates</h4>    
+        <p class="title-2">Videos
+          <span class="s-title text-center">Can be rearranged as to which Videos appear first</span>
+        </p>
+        <button (click)="back()" class="btn btn-secondary btn-large capitalize mt-2">
+          <i class="fa fa-arrow-left"></i> Back
+        </button>        
+      </div> 
+
+      <div class="col-md-12 d-flex mt-3" *ngIf="form">        
+        <form class="col-sm-12 col-md-12 col-lg-12 pl-0" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+
+          <div class="form-group" [ngClass]="displayFieldCss(form, 'type')">
+            <label>Video Type</label>
+            <input type="text" class="form-control" formControlName="type" required="">
+          </div>
+          <div class="form-group" [ngClass]="displayFieldCss(form, 'url')">
+            <label>URL or Select video file</label>
+            <div class="row">
+              <div class="col-md-6">
+                <input type="text" class="form-control" formControlName="url">                
+              </div> 
+              <div class="col-md-6 mt-0">
+                <app-file-uploader #uploaderVideo
+                  maxWidth="0" label="Select Vidéo file" 
+                  [edition]="edition" btnClass="btn-warning"   
+                  size=""                  
+                  [endpoint]="'upload'" folder="videos" [multiple]="false"
+                  typeImage="banner"
+                  isVideo="true"
+                  (onDone)="endUpload($event)">
+                </app-file-uploader> 
+              </div> 
+            </div>  
+            
+          </div>
+
+          
+          
+          <button [disabled]="isLoading" type="submit" class="btn btn-warning btn-large capitalize mt-2">Post</button>
+        </form>
+      </div>        
+    </div>
+  </div>
+</div>
+
+  

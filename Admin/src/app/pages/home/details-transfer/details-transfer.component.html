@@ -1,0 +1,82 @@
+<div class="container" id="admin" *ngIf="!isLoading">
+    <h2>Details business {{data.name}}</h2>
+    <!----div class="left" colspan="3" [hidden]="isLoading">
+        <button (click)="back()" class="btn btn-secondary btn-large capitalize mt-2">
+          <i class="fa fa-arrow-left"></i> Back
+        </button>   
+      </div-->
+<div>    
+    <p class="title-2">Transfer Details
+      <span class="s-title text-center"></span>
+    </p>    
+    <div class="d-flex justify-content-end">      
+      <button (click)="approve()" [disabled]="isLoading" type="submit" class="btn btn-warning btn-large capitalize mt-2"> Approve</button>&nbsp;
+      <button (click)="rejeted(data)" [disabled]="isLoading" type="submit" class="btn btn-warning btn-danger btn-large capitalize mt-2"> Reject</button>
+    </div>
+    <form class="row" action="" [formGroup]="form"  (ngSubmit)="submit()" novalidat>
+      <div class="col-6">
+        <div class="form-group mt-3" [ngClass]="displayFieldCss(form, 'oldOwner')">
+          <label>Old Name</label>
+          <input type="text" class="form-control" formControlName="oldOwner" readonly>
+        </div>
+        <div class="form-group" [ngClass]="displayFieldCss(form, 'oldEmail')">
+          <label>Old email</label>
+          <input type="text" class="form-control" formControlName="oldEmail" readonly>
+        </div>
+        <div class="form-group" [ngClass]="displayFieldCss(form, 'oldPhone')">
+          <label>Old Telephone</label>
+          <input type="text" class="form-control" formControlName="oldPhone" readonly>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group mt-3" [ngClass]="displayFieldCss(form, 'newOwner')">
+          <label>New Name</label>
+          <input type="text" class="form-control" formControlName="newOwner" readonly>
+        </div>
+        <div class="form-group" [ngClass]="displayFieldCss(form, 'newEmail')">
+          <label>New email</label>
+          <input type="text" class="form-control" formControlName="newEmail" readonly>
+        </div>
+        <div class="form-group" [ngClass]="displayFieldCss(form, 'newPhone')">
+          <label>New Telephone</label>
+          <input type="text" class="form-control" formControlName="newPhone" readonly>
+        </div>
+      </div>         
+
+      <!----button [disabled]="isLoading" type="submit" class="btn btn-warning btn-large capitalize mt-2">Post</button-->        
+    </form>
+    <p class="title-2">LISTING CLASS TYPE</p> 
+      CLASS :
+      <label class="text-left mr-2" *ngFor="let item of dt">{{ item?.name }} </label>
+      <span class="s-title text-center"></span>
+    
+    <div class="col-xs-12 col-md-10 content table-responsive mt-4">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="text-left border-top-0">S.No</th>
+              <th class="text-left border-top-0">Name </th>
+              <th class="text-left border-top-0" style="width: 200px;"></th>
+            </tr>
+          </thead>
+          <tbody class="pt-3">                        
+              <tr *ngFor="let d of rowsRq">
+                <td class="text-left">{{d?.id}}</td>
+                <td class="text-left">{{d?.name}}</td>
+                <td class="text-left">
+                    <!----input type="checkbox" [checked]="d.ownership === 1"-->
+                    <label *ngIf="d.ownership">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                  </label>
+                </td>
+                <td class="td-actions text-right">
+                  <button (click)="edit(d)"  [disabled]="isLoading" type="submit" class="btn btn-success btn-xs" style="font-size: 12px;"> VIEW</button>&nbsp;
+                  
+                  <!----a class="btn btn btn-outline-danger text-danger btn-link btn-xs" (click)="delete(d)">DELETE</a-->
+                </td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </div>
+</div>

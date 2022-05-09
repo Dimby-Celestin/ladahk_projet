@@ -1,0 +1,26 @@
+swagger: "2.0"
+
+basePath: /api/v1
+schemes:
+  - http
+
+consumes:
+  - application/json
+
+produces:
+  - application/json
+
+info:
+  $ref: ./info/index.yaml
+
+securityDefinitions:
+  $ref: ./security/index.yaml
+
+definitions:
+  $ref: ./definitions/index.yaml
+
+paths:
+  $ref: ./paths/index.yaml
+
+responses:
+  $ref: ./responses/index.yaml

@@ -1,0 +1,8 @@
+<button type="button" class="btn {{ color }} {{ simple }} {{ outline }} {{ fill }} {{ full }} {{ block }} {{ blocksmall }}" [disabled]="loading || disabled">
+  <span *ngIf="spinner && loading" class="{{ spinner }}"></span>
+  <span class="btn-label">
+    <i *ngIf="icon" class="{{ icon }}"></i>
+  </span>
+  <ng-content *ngIf="!loading"></ng-content>
+  <ng-container *ngIf="loading">{{ customText }}</ng-container>
+</button>

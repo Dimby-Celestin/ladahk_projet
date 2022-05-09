@@ -1,0 +1,45 @@
+AuthCredentials:
+  $ref: ./AuthCredentials.yaml
+Document:
+  $ref: ./Document.yaml
+User:
+  $ref: ./User.yaml
+Category:
+  $ref: ./Category.yaml
+Article:
+  $ref: ./Article.yaml
+News:
+  $ref: ./News.yaml
+Roadtoladakh:
+  $ref: ./Roadtoladakh.yaml
+Slider:
+  $ref: ./Slider.yaml
+Agenda:
+  $ref: ./Agenda.yaml
+Business:
+  $ref: ./Business.yaml
+Boption:
+  $ref: ./Boption.yaml  
+RequiredDocument:
+  $ref: ./RequiredDocument.yaml
+BusinessRequiredDocument:
+  $ref: ./BusinessRequiredDocument.yaml
+BusinessCategory:
+  $ref: ./BusinessCategory.yaml
+Calendar:
+  $ref: ./Calendar.yaml  
+RoomOption:
+  $ref: ./RoomOption.yaml
+Video:
+  $ref: ./Video.yaml 
+BusinessTransfert:
+  $ref: ./BusinessTransfert.yaml
+BusinessTransfertRequiredDocument:
+  $ref: ./BusinessTransfertRequiredDocument.yaml
+Gallery:
+  $ref: ./Gallery.yaml
+GalleryCategory:
+  $ref: ./GalleryCategory.yaml
+StaticPage:
+  $ref: ./StaticPage.yaml
+  

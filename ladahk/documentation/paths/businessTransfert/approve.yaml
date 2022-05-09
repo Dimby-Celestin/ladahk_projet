@@ -1,0 +1,24 @@
+put:
+  summary: Approve business
+  description: Approve business by ID.
+  operationId: approveBusinessTransfert
+  tags:
+    - BusinessTransfert
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: id
+      in: path
+      description: BusinessTransfert ID.
+      type: string
+      required: true
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/BusinessTransfert'
+    400:
+      $ref: '#/responses/UnauthorizedError'

@@ -1,0 +1,46 @@
+type: object
+description: BusinessTransfert
+tags:
+  - Transfert
+properties:
+  id:
+    type: string
+    readOnly: true
+  businessId:
+    type: integer
+  oldOwner:
+    type: string
+    description: the old owner
+  oldEmail:
+    type: string
+    description: the old email
+  oldPhone:
+    type: string
+    description: the old phone
+  newOwner:
+    type: string
+    description: the new owner
+  newEmail:
+    type: string
+    description: the new Email
+  newPhone:
+    type: string
+    description: the new phone
+  status:
+    type: string
+    enum:
+      - draft
+      - valid
+      - refused
+      - pending
+  refusedReason:
+    type: string
+  updated_at:
+    type: integer
+    format: Timestamp 
+    readOnly: true
+  created_at:
+    type: integer
+    format: Timestamp
+    readOnly: true
+  

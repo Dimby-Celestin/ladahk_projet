@@ -1,0 +1,20 @@
+type: object
+description: Video
+properties:
+  id:
+    type: string
+    readOnly: true
+  type: 
+    type: string
+    description: type
+  url: 
+    type: string
+    description: url
+  updated_at:
+    type: integer
+    format: Timestamp 
+    readOnly: true
+  created_at:
+    type: integer
+    format: Timestamp
+  

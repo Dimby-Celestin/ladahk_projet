@@ -1,0 +1,75 @@
+get:
+  summary: Gets a doc by ID
+  description: Gets a doc by ID, with all data excepts the password
+  operationId: getSlider
+  tags:
+    - Slider
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: id
+      in: path
+      description: Slider ID.
+      type: string
+      required: true
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/Slider'
+    400:
+      $ref: '#/responses/UnauthorizedError'
+put:
+  summary: Updates a Slider by ID
+  description: Updates a Slider by ID.
+  operationId: updateSlider
+  tags:
+    - Slider
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: id
+      in: path
+      description: Slider ID. If called from the application, can be "me".
+      type: string
+      required: true
+    - in: body
+      name: user
+      description: The user to update
+      schema:
+        $ref: "#/definitions/Slider"
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/Slider'
+    400:
+      $ref: '#/responses/UnauthorizedError'
+delete:
+  summary: Deletes a user by ID
+  description: Deletes a user by ID
+  operationId: deleteSlider
+  tags:
+    - Slider
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: id
+      in: path
+      description: Slider ID
+      type: string
+      required: true
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+    400:
+      $ref: '#/responses/UnauthorizedError'

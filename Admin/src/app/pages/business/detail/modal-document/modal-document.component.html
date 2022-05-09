@@ -1,0 +1,17 @@
+<div class="row">  
+    <div class="col-12">    
+        <button type="button" class="float-right close mt-1" data-dismiss="modal" (click)="onClose()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>    
+        <a [href]="data.realPath" target="_blank" class="btn btn-primary btn-theme float-right mr-2">Print</a>    
+        <a [href]="data.realPath" target="_blank" class="btn btn-primary btn-theme float-right mr-2" >Download</a>
+    </div>
+</div>
+
+<div class="row mt-4" style="height: 90%;">
+    <div class="col-12">        
+        <img class="w-100 img-responsive" [src]="data.realPath" alt="image">
+    </div>
+</div>
+
+

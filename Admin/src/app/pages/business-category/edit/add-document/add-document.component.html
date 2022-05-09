@@ -1,0 +1,39 @@
+<div class="container" id="admin" *ngIf="!isLoading">
+    <h2>Add required document</h2>
+    <button (click)="back()" class="btn btn-warning btn-large capitalize mt-2">
+        <i class="fa fa-arrow-left"></i> Back
+      </button>  
+  <p class="title-2">
+    <span class="s-title text-center"></span>
+  </p>    
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="form-group" [ngClass]="displayFieldCss(form, 'name')">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name" >
+        </div>
+        <button [disabled]="isLoading" type="submit" class="btn btn-warning btn-large capitalize mt-2">Post</button> 
+    </form>
+    <div class="col-xs-12 col-md-10 content table-responsive mt-4">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="text-left border-top-0">S.No</th>
+              <th class="text-left border-top-0">Name </th>
+              
+              <th class="text-left border-top-0" style="width: 200px;"></th>
+            </tr>
+          </thead>
+          <tbody class="pt-3" *ngIf="rows && rows.length">
+            <tr *ngFor="let d of rows" >
+              <td class="text-left">{{d.id}}</td>
+              <td class="text-left">{{d.name}}</td>
+              
+              <td class="td-actions text-right">
+                <!----a class="btn btn btn-outline-dark btn-link btn-xs" [routerLink]="['/business-category/edit', d.id]">EDIT</a>&nbsp;
+                <a class="btn btn btn-outline-danger text-danger btn-link btn-xs" (click)="delete(d)">DELETE</a-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</div>    

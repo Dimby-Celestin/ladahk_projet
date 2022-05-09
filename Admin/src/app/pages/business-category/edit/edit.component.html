@@ -1,0 +1,102 @@
+  <div class="container" id="admin" *ngIf="!isLoading">
+    <h2>Business category {{data?.name}}</h2>   
+      <p class="title-2">Business category
+        <span class="s-title text-center"></span>
+      </p> 
+      <button (click)="back()" class="btn btn-secondary btn-large capitalize mt-2">
+        <i class="fa fa-arrow-left"></i> Back
+      </button>     
+  <div [hidden]="isLoading" *ngIf="id !== 'new'" class="text-right">
+    <button class="btn btn-warning ml-4" [routerLink]="['/business-category/edit/'+ id + '/docs']">
+      required document 
+    </button>
+  </div>
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="form-group" [ngClass]="displayFieldCss(form, 'name')">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name" >
+        </div>
+        
+        <button [disabled]="isLoading" type="submit" class="btn btn-warning btn-large capitalize mt-2">Post</button> 
+    </form>
+    <br/>
+    <!----div [hidden]="isLoading">
+      <h2 style="color: black" *ngIf="!id">Add new required document </h2>
+      <h2 style="color: black" *ngIf="id">Edit required document </h2>
+  </div-->
+  <div *ngIf="rows && rows.length">
+      <div [hidden]="isLoading">
+        <p *ngIf="id !== 'new'" class="title-2">List class 
+          <span class="s-title text-center"></span>
+        </p> 
+      </div>
+        <div [hidden]="isLoading" *ngIf="id !== 'new'" class="col-xs-12 col-md-10 content table-responsive mt-4">
+          <div class="text-right">
+              <button (click)="edit()"  [disabled]="isLoading" type="submit" class="btn btn-warning btn-large capitalize mt-2"> Add new class </button>&nbsp;
+          </div>
+            
+          <table class="table table-hover">
+            <thead>
+              <tr>
+              
+                <th class="text-left border-top-0">CATEGORY </th>
+                <th class="text-left border-top-0">CLASS </th>
+                <th class="text-left border-top-0">REGISTRATION FEE </th>
+                <th class="text-left border-top-0">RENEWAL FEES </th>
+                <th class="text-left border-top-0" style="width: 200px;"></th>
+              </tr>
+            </thead>
+            <tbody class="pt-3" *ngIf="rows && rows.length">
+              <tr *ngFor="let d of rows | paginate: {id: 'page', itemsPerPage: pageSize, currentPage: page, totalItems: pageLength}">
+                <td class="text-left">{{data.name}}</td>
+                <td class="text-left">{{d.name}}</td>
+                <td class="text-left">{{d.register_fee}}</td>
+                <td class="text-left">{{d.renewal_fee}}</td>
+                <td class="td-actions text-right">
+                  <button (click)="edit(d)"  [disabled]="isLoading" type="submit" class="btn btn btn-outline-dark btn-link btn-xs"> EDIT</button>&nbsp;
+                  <a class="btn btn btn-outline-danger text-danger btn-link btn-xs" (click)="delete(d)">DELETE</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+
+        <div class="col-lg-12 pb-4 mt-5 mb-4 footer-pager text-center">
+            <div class="col text-right">
+              <pagination-template #p="paginationApi" id="page" (pageChange)="pageChangeEvent($event)">
+                <nav class="mx-auto">
+                <ul class="pagination mx-auto">
+                  <li [class.disabled]="p.isFirstPage()" class="page-item">
+                    <a class="page-link prev" (click)="!p.isFirstPage() && p.previous()">
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>                
+                  <li class="page-item" *ngFor="let customPage of p.pages">                    
+                    <a class="page-link" [class.active]="p.getCurrent() === customPage.value" (click)="p.setCurrent(customPage.value)" *ngIf="p.getCurrent() !== customPage.value">
+                      {{customPage.label}}
+                    </a>
+                    <a class="page-link active" *ngIf="p.getCurrent() === customPage.value">{{customPage.label}}</a>
+                  </li>
+                  <li class="page-item" [class.disabled]="p.isLastPage()">
+                    <a (click)="!p.isLastPage() && p.next()" class="page-link next">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+                </nav>
+                <h4 class="text-center">{{page}} to {{pageSize * page}} of {{pageLength}} totals</h4> 
+              </pagination-template>
+            </div>
+          </div>
+
+
+        </div>
+</div>
+
+
+
+

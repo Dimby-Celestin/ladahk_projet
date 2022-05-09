@@ -1,0 +1,30 @@
+type: object
+description: BusinessCategory
+properties:
+  id:
+    type: string
+    readOnly: true
+  parent_id:
+    type: string
+  name:
+    type: string
+    description: name
+  ableToTransfertRegistration:
+    type: boolean
+  createPropertyListing:
+    type: boolean
+  register_fee:
+    type: float
+    description: price
+  renewal_fee:
+    type: float
+    description: price
+  updated_at:
+    type: integer
+    format: Timestamp 
+    readOnly: true
+  created_at:
+    type: integer
+    format: Timestamp
+    readOnly: true
+  

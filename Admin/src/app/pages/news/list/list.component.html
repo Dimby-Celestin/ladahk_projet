@@ -1,0 +1,84 @@
+<div class="main-content container" id="admin">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class="title">Welcome Admin.</h4>
+          <button (click)="back()" class="btn btn-secondary btn-large capitalize mt-2">
+            <i class="fa fa-arrow-left"></i> Back
+          </button> <br/> <br/> 
+          <p class="title-2">List News/Updates
+            <button class="btn btn-warning ml-4" [routerLink]="['/news/add', 'new']">
+              Add
+            </button>
+          </p>
+        </div>
+
+        <div class="col-md-12 mt-2"><hr/></div>   
+  
+        <div class="col-md-12 d-flex mt-4">
+          <p class="title-2">News/Updates</p>          
+        </div>
+
+
+        <div class="col-md-12 mt-2"><hr/></div>   
+        
+        <div class="col-xs-12 col-md-10 content table-responsive mt-4">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th class="text-left border-top-0">S.No</th>
+                <th class="text-left border-top-0">Title</th>
+                <th class="text-left border-top-0">content</th>
+                <th class="text-left border-top-0" style="width: 200px;"></th>
+              </tr>
+            </thead>
+            <tbody class="pt-3" *ngIf="rows && rows.length">
+              <tr *ngFor="let d of rows | paginate: {id: 'page', itemsPerPage: pageSize, currentPage: page, totalItems: pageLength}">
+                <td class="text-left">{{d.id}}</td>
+                <td class="text-left">{{d.title}}</td>
+                <td class="text-left" [innerHTML]="d.content"></td>
+                <td class="td-actions text-right ">
+                  <a class="btn btn btn-outline-dark btn-link btn-xs" [routerLink]="['/news/add', d.id]">EDIT</a>&nbsp;
+                  <a class="btn btn btn-outline-danger text-danger btn-link btn-xs" (click)="delete(d)">DELETE</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class=" progress-loader text-center" [hidden]="!isLoading">
+              <img src="assets/images/loadbk.gif">
+          </div>
+        </div>
+        
+        <div class="col-lg-12 pb-4 mt-5 mb-4 footer-pager text-center">
+          <div class="col text-right">
+            <pagination-template #p="paginationApi" id="page" (pageChange)="pageChangeEvent($event)">
+              <nav class="mx-auto">
+              <ul class="pagination mx-auto">
+                <li [class.disabled]="p.isFirstPage()" class="page-item">
+                  <a class="page-link prev" (click)="!p.isFirstPage() && p.previous()">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item" *ngFor="let customPage of p.pages">
+                  <a class="page-link" [class.active]="p.getCurrent() === customPage.value" (click)="p.setCurrent(customPage.value)" *ngIf="p.getCurrent() !== customPage.value">{{
+                    customPage.label }}</a>
+                  <a class="page-link active" *ngIf="p.getCurrent() === customPage.value">{{ customPage.label }}</a>
+                </li>
+                <li class="page-item" [class.disabled]="p.isLastPage()">
+                  <a (click)="!p.isLastPage() && p.next()" class="page-link next">
+                    <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+              </nav>
+              <h4 class="text-center">{{page}} to {{pageSize * page}} of {{pageLength}} totals</h4> 
+            </pagination-template>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  

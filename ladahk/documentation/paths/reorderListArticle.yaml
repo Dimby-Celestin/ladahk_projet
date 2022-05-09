@@ -1,0 +1,42 @@
+post:
+  summary: Reorder List Article.
+  description: reorder List Article
+  operationId: reorderListArticle
+  tags:
+    - Menu
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - in: body
+      name: body
+      description: data
+      type: object
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        type: object
+        properties:
+          limit:
+            type: integer
+            description: Max elements to return
+          page:
+            type: integer
+            description: Page asked
+          pages:
+            type: integer
+            description: Total pages available
+          rows:
+            type: array
+            description: Elements asked
+            items:
+              $ref: '#/definitions/Article'
+          total:
+            type: integer
+            description: Total of elements corresponding to the query without limits.
+    500:
+      description: An unexpected error arrived
+

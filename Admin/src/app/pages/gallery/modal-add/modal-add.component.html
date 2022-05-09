@@ -1,0 +1,46 @@
+<mat-dialog-content>
+    <div class="row">   
+        <div class="col-lg-12"> 
+            <button (click)="onClose()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h2 style="color: black">Photos <span class="title-2">(Gallery section)</span></h2>
+        </div>
+    </div>
+
+    <div class="row mt-3" *ngIf="form">
+        <form class="offset-sm-1 offset-md-1 offset-lg-2 col-sm-10 col-md-10 col-lg-8" [formGroup]="form" (ngSubmit)="submit()" novalidate>            
+            <div class="form-group">
+                <app-file-uploader #uploader maxWidth="120px" label="Select files" 
+                    [file]="data?.document"
+                    size="260 X 220" 
+                    btnClass="btn-secondary"                    
+                    endpoint="uploadGallery" 
+                    [edition]="edition"
+                    typeImage="gallery"
+                    folder="galery"
+                    (onDone)="end($event)">
+                </app-file-uploader> 
+            </div>
+            <div class="form-group" [ngClass]="displayFieldCss(form, 'category_id')">
+                <ng-select
+                    class="btn-outline-dark"
+                    [items]="categories" 
+                    bindLabel="name"
+                    bindValue="id"
+                    [multiple]="false"
+                    [searchable]="false" 
+                    [clearable]="false" 
+                    placeholder="Choose Category"
+                    formControlName="category_id"
+                >
+                </ng-select> 
+            </div>
+            <div class="">
+                <button class="btn btn-warning" [disabled]="isLoading" type="submit">Upload photos</button>    
+            </div>
+        </form>
+    </div>
+</mat-dialog-content>
+
+

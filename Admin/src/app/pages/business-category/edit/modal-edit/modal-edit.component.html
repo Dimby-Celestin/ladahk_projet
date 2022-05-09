@@ -1,0 +1,44 @@
+<button (click)="onNoClick()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+</button>
+<div class="container" id="admin" *ngIf="!isLoading">
+       
+    <div [hidden]="isLoading">
+      <h2 style="color: black" *ngIf="!id">Add new required document </h2>
+      <h2 style="color: black" *ngIf="id">Edit required document </h2>
+  </div>
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+     
+        <!----div class="form-group" [ngClass]="displayFieldCss(form, 'name')">
+        <label>Name</label>
+          <input type="text" class="form-control" formControlName="name" >
+        </div-->
+        <div class="form-group" [ngClass]="displayFieldCss(form, 'name')">
+          <label>Class</label>
+          <ng-select 
+            class="btn-outline-dark"
+            [items]="rows" 
+            bindLabel="name"
+            bindValue="name"
+            [multiple]="false"
+            [searchable]="false" 
+            [clearable]="false" 
+            placeholder="Class"
+            formControlName="name"
+          >
+          </ng-select>
+        </div>
+        <div class="form-group" [ngClass]="displayFieldCss(form, 'register_fee')">
+          <label>REGISTRATION FEE</label>
+                <input type="number" class="form-control" formControlName="register_fee" >
+        </div>
+        <div class="form-group" [ngClass]="displayFieldCss(form, 'renewal_fee')">
+          <label>RENEWAL FEES</label>
+              <input type="number" class="form-control" formControlName="renewal_fee" >
+        </div>
+        <button [disabled]="isLoading" type="submit" class="btn btn-warning btn-large capitalize mt-2">Post</button> 
+    </form>
+</div>
+
+
+

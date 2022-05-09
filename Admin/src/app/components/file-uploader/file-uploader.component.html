@@ -1,0 +1,57 @@
+<div class="row" class="fileinput fileinput-new text-center" data-provides="fileinput">
+    <div class="col-md-12">
+        <div *ngIf="!isVideo && !isDoc">
+            <div class="fileinput-new thumbnail" *ngIf="!multiple">
+                <img *ngIf="!uploader.queue.length && fichier && fichier.path" [src]="getFilePath(fichier)" alt="...">
+                <ng-container *ngIf="!uploader.queue.length && !fichier">
+                    <img *ngIf="!file || !file.id" [style.max-width]="maxWidth" [style.max-height]="maxHeight" src="./assets/images/placeholder{{typeImage && typeImage !== '' ? '_' + typeImage: ''}}.png" alt="...">
+                    <img *ngIf="file && file.id" [style.max-width]="maxWidth" [style.max-height]="maxHeight" [src]="file.realPath" alt="...">
+                </ng-container>
+                
+                <img *ngIf="uploader.queue.length" [src]="previewFileItem(uploader.queue[0])" alt="..." >
+            </div>
+            <div class="d-flex" *ngIf="multiple && uploader.queue &&  uploader.queue.length">
+                <div *ngFor="let item of uploader.queue" class="m-2 image-container" >
+                    <img [src]="previewFileItem(item)" class="mg-fluid img-thumbnail" style="width: 150px;" alt="..." >
+                </div>
+            </div>
+            <div class="fileinput-preview fileinput-exists thumbnail"></div>
+        </div>        
+    </div>
+    <div class="col-md-12 pl-0 pr-0" *ngIf="uploader">
+        <div>
+            <span *ngIf="multiple" [class]="'btn btn-fill btn-file ' + btnClass"  (click)="uploadInput.click()">
+                <span class="fileinput-new">{{label ? label : 'Upload pictures'}}</span>
+                <span class="fileinput-exists">Update picture</span>
+                <input #uploadInput [disabled]="isLoading" type="file" multiple
+                [accept]="accept"  [hidden]="true" ng2FileSelect [uploader]="uploader" />
+              
+            </span>
+            <div *ngIf="!multiple" [class]="'btn btn-fill btn-file ' + btnClass" (click)="uploadInput.click()">
+                <span class="fileinput-new">{{label ? label : 'Upload pictures'}}</span>
+                <span class="fileinput-exists">Update picture</span>
+                <input #uploadInput [disabled]="isLoading" type="file" 
+                [accept]="accept"  [hidden]="true" ng2FileSelect [uploader]="uploader" />
+              
+            </div>
+            <br />
+            <a href="javascript:void()" *ngIf="!isLoading"
+                class="btn btn-danger btn-fill fileinput-exists" data-dismiss="fileinput">
+                <i class="fa fa-times"></i> Supprimer</a>
+        </div>
+    </div>
+    <div *ngIf="isVideo || isDoc">
+        <span class="s-title" *ngIf="uploader.queue.length">{{previewFileItem(uploader.queue[0])}}</span>
+        <span class="s-title" *ngIf="!uploader.queue.length && fichier && fichier.path"></span>
+    </div>
+    <div class="col-md-12" *ngIf="uploader.queue.length && isLoading">
+        <div class="progress" style="height: 10px">
+            <div class="progress-bar bg-info progress-bar-striped" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }">
+                {{uploader.progress ? uploader.progress : 0}} %
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" *ngIf="!isDoc">
+        <label class="text-center text-dark">{{size}}</label>
+    </div>
+</div>

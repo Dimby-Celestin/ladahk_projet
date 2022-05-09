@@ -1,0 +1,21 @@
+<div class="container pt-5 pb-5" id="auth">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-1">
+        <h3 class="title">Login</h3>
+        <div class="progress-loader text-center" [hidden]="!isLoading">
+            <img src="assets/images/loadbk.gif">
+        </div>  
+        <form class="col-sm-10 col-md-10 col-lg-8 pl-0 mt-5 pt-5" [formGroup]="form" (ngSubmit)="submit()">
+          <div class="form-group"  [ngClass]="displayFieldCss(form, 'email')">
+               <input type="email" class="form-control" id="email" formControlName="email" placeholder="Entrez votre e-mail" required="">
+          </div>
+          <div class="form-group"  [ngClass]="displayFieldCss(form, 'password')">
+               <input type="password" class="form-control" id="password" formControlName="password" placeholder="Mot de passe" required="">
+          </div>
+          <button type="submit" class="btn btn-primary btn-theme mt-2">Signup</button>
+        </form>
+      </div> 
+           
+    </div>
+</div>
+

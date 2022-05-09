@@ -1,0 +1,23 @@
+get:
+  summary: Regenerate the current auth token
+  description: Regenerate a new auth token in case of the current token has expired. Check the existance of the user. 
+  tags: 
+    - Authentication
+  operationId: regenerate
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: expire_in
+      in: query
+      description: Optional parameters to set the expiration time (in seconds)
+      type: integer
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/AuthCredentials'
+    404:
+      description: An error occured with the credentials, user has been removed or deactivated

@@ -1,0 +1,36 @@
+<form  [formGroup]="form" (ngSubmit)="submit()" novalidate>
+
+<h1 mat-dialog-title class="txt-modal-title">
+Add holiday
+</h1>
+<div class="form-group col-12" [ngClass]="displayFieldCss(form, 'date')">
+    <label>Date</label>
+    <input type="text" class="form-control" formControlName="date" required="" readonly>
+  </div>
+<div class="form-group col-12" [ngClass]="displayFieldCss(form, 'title')">
+    <label>Title</label>
+    <input type="text" class="form-control" formControlName="title" required="">
+  </div>
+
+<div class="form-group col-12" [ngClass]="displayFieldCss(form, 'kind')">
+    <label>Kind</label>
+    <ng-select 
+      class="btn-outline-dark"
+      [items]="kinds" 
+      bindLabel="value"
+      [multiple]="false"
+      bindValue="id"
+      [searchable]="false" 
+      [clearable]="false" 
+      placeholder="Kind of holiday"
+      formControlName="kind"
+    >
+    </ng-select>
+  </div>
+<div mat-dialog-actions class="justify-content-end">
+  <button class="btn btn-default" type="button" mat-button (click)="onNoClick()"> Cancel</button>
+  <button class="btn btn-success btn-fill" type="submit" color="warn" mat-icon-button  aria-label="Example icon-button with a heart icon">
+     Save
+   </button>
+</div>
+</form>

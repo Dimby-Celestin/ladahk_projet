@@ -1,0 +1,38 @@
+#faq {
+    .header-image {
+        height: 460px;
+        width: 100%;
+        margin-top: -22px;
+        background-position: bottom;
+        background-size: cover;
+    }   
+    .header-top {
+        height: 460px;
+        margin-bottom: 70px;
+    }
+    .title {
+        margin-top: -375px;
+    } 
+    .btn {
+        font-family: sourceSansPro-bold !important;
+        font-size: 22px !important;
+        font-weight: 800;
+        text-align: left !important;
+        border-radius: 0px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        color: #212020 !important;
+        border-color: #707070 !important;
+
+        svg {
+            float: right;
+            top: 6px;
+            position: relative;
+        }  
+    }
+    .btn-outline-dark {
+        &:hover {
+            background-color: aliceblue;
+        }
+    }
+}

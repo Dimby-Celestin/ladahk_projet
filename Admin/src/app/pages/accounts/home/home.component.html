@@ -1,0 +1,96 @@
+<div class="main-content" id="admin">
+    <div class="container mt-5">
+            <div class="row">
+                    <div class="col-6 col-sm-6 col-md-8">
+                            <h2 class="title-upload">
+                                    Registration of Excursion Agent/<br/>
+                                    Travel Agent under UT of Ladakh..
+                            </h2>
+                            <p class="p-t mt-4 pr-2">
+                                    LADAKH sit amet, consetetur sadipscing elitr, 
+                                    sed diam nonumy eirmod tempor invidunt ut labore et 
+                                    dolore magna aliquyam erat, sed diam voluptua. 
+                                    At vero eos et accusam et justo duo dolores et ea rebum. 
+                                    Stet clita kasd gubergren, no sea takimata sanctus est 
+                                    Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                                    consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                                    invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                                    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.                   
+                            </p>
+                    </div> 
+                    <div class="col-6 col-sm-6 col-md-4">
+                            <button class="btn btn-secondary mb-3">log out</button>
+                            <div class="table table-borderless tb">
+                                    <h4>Status</h4>
+                                    <hr>
+                                    <div class="d-flex">
+                                            <div class="d-flex">
+                                                    <p class="status">DOCUMENTS VERIFICATION</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                    <button class="btn btn-warning">PENDING</button>
+                                            </div>
+                                    </div>
+                                    <div class="d-flex mt-1">
+                                            <div class="d-flex">
+                                                    <p class="status">DISPLAY VERIFICATION</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                    <button class="btn btn-warning">PENDING</button>
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
+            </div>
+            <div class="row">
+                    <div class="col-md-8 mt-5">
+                    
+                            <div class="">
+                                    <label>Payments</label>(Charged annually)<br/>
+                                    <button class="btn btn-secondary">MAKE PAYMENT</button>
+                            </div> 
+                            <div class=" mt-4">
+                                    <label>Submit documents for review.</label>
+                                    <ng-select class="classtype" [items]="types" name="listingclasstype" placeholder="LISTING CLASS TYPE"
+                                            bindLabel="name" 
+                                            bindValue="id" 
+                                            [(ngModel)]="selected"
+                                    >
+                                    </ng-select> 
+                            </div> 
+                            <div class=" d-flex justify-content-between mb-3">
+                                    <div class="p-2">
+                                            Ownership papers of Land
+                                    </div>
+                                    <div class="p-2">
+                                            <button class="btn btn-outline-dark">upload</button>
+                                    </div>                                        
+                            </div>
+                            <hr>
+                            <div class=" d-flex justify-content-between mb-3">
+                                    <div class="p-2">
+                                            Ownership papers of Land
+                                    </div>
+                                    <div class="p-2">
+                                            <button class="btn btn-success">upload</button>
+                                            <button class="bt-close" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                            </button> Rent deed.pdf
+                                    </div>                                        
+                            </div>
+                            <hr>
+                            <div class=" d-flex justify-content-between mb-3">
+                                    <div class="p-2">
+                                            <button type="submit" class="btn btn-secondary">SUBMIT</button>
+                                    </div>
+                                    <div class="p-2 txt-end">
+                                            Make sure you’ve submitted all the required forms before submitting, failing to do so will result in rejection of the form.
+                                    </div>    
+                            </div> 
+                    </div> 
+                    <hr>
+            </div> 
+    </div>
+    
+</div>         
+

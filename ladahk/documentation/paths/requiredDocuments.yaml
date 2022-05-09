@@ -1,0 +1,87 @@
+get:
+  summary: Returns a list of documents.
+  description: Get documents corresponding to query.
+  operationId: allRequiredDocuments
+  tags:
+    - RequiredDocument
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: limit
+      in: query
+      required: true
+      description: Max number of elements to return
+      type: integer
+    - name: page
+      in: query
+      description: Page from where to start returning elements
+      required: true
+      type: integer
+    - name: sortField
+      in: query
+      description: "Field used to sort documents. There must be in format like: field1=asc or field1=desc where asc is ascendant and desc is descendant"
+      type: string
+    - name: searchValue
+      in: query
+      description: Value to search on the ordonnance
+      type: string
+    - name: searchFields
+      in: query
+      description: Fields on where to search on the ordonnance. There must be comma delimited.
+      type: string
+    - name: excerpt
+      in: query
+      description: if exist we excerp the content
+      type: boolean
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        type: object
+        properties:
+          limit:
+            type: integer
+            description: Max elements to return
+          page:
+            type: integer
+            description: Page asked
+          pages:
+            type: integer
+            description: Total pages available
+          rows:
+            type: array
+            description: Elements asked
+            items:
+              $ref: '#/definitions/RequiredDocument'
+          total:
+            type: integer
+            description: Total of elements corresponding to the query without limits.
+    500:
+      description: An unexpected error arrived
+post:
+  summary: Creates a document
+  description: Creates a document.
+  operationId: createRequiredDocument
+  tags:
+    - RequiredDocument
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - in: body
+      name: body
+      description: The document to create
+      schema:
+        $ref: "#/definitions/RequiredDocument"
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/RequiredDocument'
+    400:
+      $ref: '#/responses/UnauthorizedError'

@@ -1,0 +1,67 @@
+#faq {
+    .header-top {
+        height: 600px;
+        width: 100%;
+        margin-top: -22px;
+    }
+    .header-image {
+        height: 600px;
+        width: 100%;
+        margin-top: -22px;
+    }    
+    .title {
+        color: #212020;        
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.37;
+        letter-spacing: normal;
+        text-align: left;
+        margin-bottom: 35px;       
+        position: relative;
+        height: 300px;
+        margin-top: -300px;
+        align-self: center;
+        display: block;
+        padding-top: 120px; 
+        h3 {
+            font-size: 32px;
+            font-weight: 100;
+            font-family: OpenSans-Light !important;
+            span {
+                font-size: 32px;
+                font-weight: 900;
+                font-family: sourceSansPro-regular !important;
+            }
+        }        
+        p {
+            font-size: 18px;
+            font-weight: 100;
+            font-family: OpenSans-Light !important;
+        }
+    }
+    .btn {
+        font-family: sourceSansPro-regular !important;
+        font-size: 22px !important;
+        font-weight: 800;
+        text-align: left !important;
+        border-radius: 0px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        i {
+            font-size: 24px !important;
+            color: #212020 !important;
+            float: right;
+            top: 6px;
+            position: relative;
+        }
+    }
+    .card {
+        margin-top: 10px !important;
+        margin-bottom: 15px !important;
+        background: transparent !important;
+        border: 0 !important;
+        font-family: OpenSans-Light !important;
+        color: #212020;
+    }
+    
+}

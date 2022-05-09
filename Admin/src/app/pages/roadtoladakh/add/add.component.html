@@ -1,0 +1,157 @@
+<div class="main-content container pb-3" id="admin">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8">
+          <h4 class="title font-30">Road to ladakh/Updates</h4>    
+          <p class="title-2">Road to ladakh
+          </p> 
+          <button (click)="back()" class="btn btn-secondary btn-large capitalize mt-2">
+            <i class="fa fa-arrow-left"></i> Back
+          </button>       
+        </div> 
+  
+  
+        <div class="col-md-12 d-flex mt-3" *ngIf="form">        
+  
+          
+            <form class="col-sm-12 col-md-12 col-lg-12 pl-0" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+
+              <div class="form-group">
+                <div class="col-md-12 form-group pl-0 d-flex flex-wrap align-items-center">
+                  <ng-container *ngIf="data && data.sliders">
+                  <div *ngFor="let img of data.sliders" class="m-2 image-container">
+                    <button class="btn btn-xs btn-remove" type="button" (click)="removeBannerImg(img)">x</button>
+                    <img [src]="img.realPath" class="img-fluid img-thumbnail">
+                  </div>
+                </ng-container>
+                
+                  <app-file-uploader #uploaderBanner [multiple]="true"
+                    maxWidth="120px" label="Upload sliders"
+                    size="1350 X 400" 
+                    [edition]="edition" btnClass="btn-warning"                    
+                    [endpoint]="'upload'" folder="article" typeImage="banner"
+                    (onDone)="endBanner($event)">
+                  </app-file-uploader> 
+                </div>
+              </div>
+            <!----div class="form-group">            
+              <div class="row">
+                <div class="col-md-8 form-group pl-0">
+                  <app-file-uploader #uploaderBanner
+                  [file]="data?.banner"
+                    maxWidth="600px" label="Upload Slider  picture" 
+                    [edition]="edition" btnClass="btn-warning"                    
+                    [endpoint]="'upload'" folder="roadtoladakh" [multiple]="false"
+                    typeImage="banner"
+                    (onDone)="endBanner($event)">
+                  </app-file-uploader> 
+                </div>
+                <div class="col-md-4 form-group pl-0">
+                  <app-file-uploader #uploaderThumbnail
+                  [file]="data?.thumbnail"
+                  typeImage="thumbnail"
+                    maxWidth="250px" label="Upload thumbnail picture" 
+                    [edition]="edition" btnClass="btn-warning"                    
+                    [endpoint]="'upload'" folder="roadtoladakh" [multiple]="false"
+                    (onDone)="endThumbnail($event)">
+                  </app-file-uploader> 
+                </div>
+              </div>
+              
+            </div-->
+            
+  
+            <!--div class="row">
+              <div class="form-group col-12 col-md-6" [ngClass]="displayFieldCss(form, 'name')">
+                <label>Author Name</label>
+                <input type="text" class="form-control" formControlName="name" required="">
+              </div>
+              <div class="form-group col-12 col-md-6" [ngClass]="displayFieldCss(form, 'designation')">
+                <label>Author Designation</label>
+                <input type="text" class="form-control"formControlName="designation" required="">
+              </div>
+            </div-->
+  
+            <div class="form-group" [ngClass]="displayFieldCss(form, 'title')">
+              <label>Road to ladakh Title</label>
+              <input type="text" class="form-control" formControlName="title" required="">
+            </div>
+            <div class="form-group" [ngClass]="displayFieldCss(form, 'content')">
+              <label>Road to ladakh</label>
+              <quill-editor  formControlName="content" required="">
+                <div quill-editor-toolbar>
+                  <span class="ql-formats">
+                    <select class="ql-font">
+                      <option selected></option>
+                      <option value="serif"></option>
+                      <option value="monospace"></option>
+                    </select>
+                    <select class="ql-size">
+                      <option value="small"></option>
+                      <option selected></option>
+                      <option value="large"></option>
+                      <option value="huge"></option>
+                    </select>
+                  </span>
+                  <span class="ql-formats">
+                    <button class="ql-bold"></button>
+                    <button class="ql-italic"></button>
+                    <button class="ql-underline"></button>
+                    <button class="ql-strike"></button>
+                  </span>
+                  <span class="ql-formats">
+                    <select class="ql-color"></select>
+                    <select class="ql-background"></select>
+                  </span>
+                  <span class="ql-formats">
+                    <button class="ql-list" value="ordered"></button>
+                    <button class="ql-list" value="bullet"></button>
+                    <select class="ql-align">
+                      <option selected></option>
+                      <option value="center"></option>
+                      <option value="right"></option>
+                      <option value="justify"></option>
+                    </select>
+                  </span>
+                  <span class="ql-formats">
+                    <app-file-uploader #uploaderThumbnail
+                    typeImage="thumbnail"
+  
+                      maxWidth="250px" label="Add doc " 
+                      btnClass="" [fichier]="this.data?.thumbnail" isDoc="true"      
+                      [endpoint]="'upload'" folder="article" [multiple]="false"
+                      (onDone)="endDoc($event)">
+                    </app-file-uploader> 
+                  </span>
+                </div>
+              </quill-editor>
+            
+            </div>
+            
+            <div class="form-group">
+              <div class="col-md-12 form-group pl-0 flex-wrap d-flex align-items-center">
+                <ng-container *ngIf="data && data.images">
+                <div *ngFor="let img of data.images" class="m-2 image-container">
+                  <button class="btn btn-xs btn-remove" type="button" (click)="removeGalleryImg(img)">x</button>
+                  <img [src]="img.realPath" class="img-fluid img-thumbnail">
+                </div>
+              </ng-container>
+                <app-file-uploader #uploader [multiple]="true"
+                  maxWidth="120px" label="Upload more  pictures in grid" 
+                  [edition]="edition" btnClass="btn-warning"                    
+                  [endpoint]="'upload'" folder="article"
+                  typeImage="gallery"
+                  (onDone)="end($event)">
+                </app-file-uploader> 
+                
+              </div>
+            </div>
+            
+            <button [disabled]="isLoading" type="submit" class="btn btn-warning btn-large capitalize mt-2">Post</button>
+          </form>
+        </div>        
+      </div>
+    </div>
+  </div>
+  
+    

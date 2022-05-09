@@ -1,0 +1,112 @@
+type: object
+description: Business
+properties:
+  id:
+    type: string
+    readOnly: true
+  name:
+    type: string
+    description: name
+  city:
+    type: string
+    description: city
+  address:
+    type: string
+    description: name
+  lat:
+    type: float
+    description: lat  
+  lng:
+    type: float
+    description: lng
+  status:
+    type: string
+    default: new
+    enum:
+      - new
+      - registering
+      - waiting_form
+      - under_review
+      - waiting_payment
+      - ignoring_guidelines
+      - document_missing
+      - valid
+      - rejected
+  rejectedReason:
+    type: string
+  documentStatus:
+    type: string
+    default: new
+    enum:
+      - pending
+      - valid
+      - refused
+  displayStatus:
+    type: string
+    default: new
+    enum:
+      - pending
+      - valid
+      - refused
+  price:
+    type: float
+    description: price
+  business_category_id:
+    type: string
+  subtype:
+    type: string
+    enum:
+      - restaurant
+      - guest_blouse
+      - resort
+      - hotel  
+  email:
+    type: string
+  phone:
+    type: string
+  comment:
+    type: float
+    description: comment            
+  thumbnail:
+     $ref: '#/definitions/Document'
+  banner:
+     $ref: '#/definitions/Document'
+  banner_id:
+    type: string
+  thumbnail_id:
+    type: string
+  images:
+    type: array
+    items:
+      $ref: '#/definitions/Document'
+  price_start:
+    type: float
+    description: price
+  property_name:
+    type: string
+    description: name of property
+  website_address:
+    type: string
+    description: website_address
+  about:
+    type: string
+    description: about
+  address_business:
+    type: string
+    description: address_business
+  nearby:
+    type: string
+    description: nearby
+  room_option_id:
+    type: string
+  room_option:
+    $ref: '#/definitions/RoomOption'
+  updated_at:
+    type: integer
+    format: Timestamp 
+    readOnly: true
+  created_at:
+    type: integer
+    format: Timestamp
+    readOnly: true
+  

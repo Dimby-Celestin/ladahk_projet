@@ -1,0 +1,23 @@
+type: object
+description: Slider
+properties:
+  id:
+    type: string
+    readOnly: true
+  title:
+    type: string
+    description: title of the article
+  content:
+    type: string
+    description: content of the article
+  image:
+     $ref: '#/definitions/Document'
+  updated_at:
+    type: integer
+    format: Timestamp 
+    readOnly: true
+  created_at:
+    type: integer
+    format: Timestamp
+    readOnly: true
+  

@@ -1,0 +1,7 @@
+UnauthorizedError:
+    description: Authorization Token missing
+    headers:
+      WWW_Authenticate:
+        type: string
+NotFound:
+    description: The item has not been found

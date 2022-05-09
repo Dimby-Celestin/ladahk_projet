@@ -1,0 +1,33 @@
+type: object
+description: User
+properties:
+  id:
+    type: string
+    readOnly: true
+  name:
+    type: string
+  phone:
+    type: string
+  email:
+    type: string
+  approved:
+    type: boolean
+    default: false
+  password:
+    type: string
+  role:
+    type: string
+    default: admin
+    enum:
+      - admin
+      - vendor
+      - photographer
+      - user
+  lastUpdatedAt:
+    type: integer
+    format: Timestamp when the token will expire in seconds since UNIX epoch
+    readOnly: true
+  createdAt:
+    type: integer
+    format: Timestamp when the token will expire in seconds since UNIX epoch
+    readOnly: true

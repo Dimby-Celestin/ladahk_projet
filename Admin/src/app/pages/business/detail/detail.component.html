@@ -1,0 +1,127 @@
+
+  <div class="container" id="admin" *ngIf="!isLoading">
+      <h2>Details business {{data.name}}</h2>
+      <div class="left" colspan="3" [hidden]="isLoading">
+          <a (click)="back()" class="text-default goBack">
+             <i class="material-icons">chevron_left</i> <span>Back</span>
+          </a>
+        </div>
+
+    <div *ngIf="data?.status !== 'under_review'">    
+      <div class="d-flex justify-content-end">
+      
+        <button (click)="approve()"  [disabled]="isLoading" type="submit" class="btn btn-warning btn-large capitalize mt-2"> Approve</button>&nbsp;
+        <button (click)="rejeted(data)" [disabled]="isLoading" type="submit" class="btn btn-warning btn-danger btn-large capitalize mt-2"> Reject</button>
+      </div>
+      <p class="title-2">Business
+        <span class="s-title text-center"></span>
+      </p>    
+      <form action="" [formGroup]="form"  (ngSubmit)="submit()" novalidat>
+        
+        <div class="form-group" [ngClass]="displayFieldCss(form, 'name')">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name" >
+        </div>
+        <div class="form-group" [ngClass]="displayFieldCss(form, 'phone')">
+          <label>Telephone</label>
+          <input type="text" class="form-control" formControlName="phone" >
+        </div>
+        <div class="form-group" [ngClass]="displayFieldCss(form, 'status')">
+          <label>status</label>
+          <input type="text" class="form-control" formControlName="status" >
+        </div>
+        <div class="form-group" [ngClass]="displayFieldCss(form, 'business_category_id')">
+          <label>Category</label>
+          <ng-select formControlName="business_category_id" 
+          [items]="categories" 
+            bindLabel="name" 
+            bindValue="id" ></ng-select>
+        </div>
+        <div class="form-group" [ngClass]="displayFieldCss(form, 'comment')">
+          <label>comment</label>
+          <textarea type="text" class="form-control" rows="5" formControlName="comment" ></textarea>
+        </div>
+        
+        <button [disabled]="isLoading" type="submit" class="btn btn-warning btn-large capitalize mt-2">Post</button>        
+      </form>
+    </div>
+
+
+    <div *ngIf="data?.status === 'under_review' || data?.status === 'waiting_payment'">   
+      
+        <div class="row mt-5">
+            <div class="col-8 mb-3">
+                <h2>Registration of
+                    Excursion under UT of Ladakh.
+                </h2>  
+                <p class="mb-5">
+                    LADAKH sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+                    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                    consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+                    sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                    Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </p>
+                <div>
+                    <div class="d-flex align-items-center">
+                        <h6> Fill Details to display on Ladakh Tourism website. </h6>
+                        <a (click)="openViewIframe()" class="btn btn-secondary ml-4">GO TO VIEW</a>
+                    </div>
+                </div>  
+            </div>
+            <div class="col-4">
+                <a href="url('/logout'" class="btn btn-light d-inline-block">Log out</a>
+                <div class="d-inline-block offset-1">{{data?.name}}</div>
+                <div class="">
+                    <div class="card mt-3" style="width: 22rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">STATUS</h5>
+                            <hr>
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6>DOCUMENTS VERIFICATION </h6>
+                                <button class="btn" [ngClass]="data?.classNameDocs">{{data?.documentStatus}}</button>
+                                </div>
+                                
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h6>DISPLAY VERIFICATION</h6>
+                                <button class="btn" [ngClass]="data?.classNameDisp">{{data?.displayStatus}}</button>
+                            </div>
+                            <hr>
+                            <div *ngIf="data?.documentStatus === 'valid' && data?.displayStatus === 'valid'" class="d-flex align-items-center justify-content-between mt-3">
+                              <h6>VALID TOTALITY</h6>
+                              <button class="btn" (click)="validTotality()" [ngClass]="data.status === 'under_review' ? 'btn-warning' : 'btn-success'">
+                                Valid totality
+                              </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-12"> <hr> </div>
+       
+        <div class="row">
+          <div class="col-12">                  
+            <div class="row" *ngFor="let d of docs">
+                <div class="col-7 mt-2 mb-2 d-inline-block cut-string">
+                  {{ d.filename }}
+                  <hr>                        
+                </div>   
+                <div class="col-5 mt-2 mb-2 d-inline-block">
+                  <button class="btn btn btn-outline-dark btn-link" (click)="openDoc(d)">VIEW</button>&nbsp;
+                  <button *ngIf="d.status === 'valid'" class="btn btn-theme btn-success mr-2">
+                    Valid
+                  </button> 
+                  <button *ngIf="d.status !== 'valid'" class="btn btn-theme btn-primary mr-2" (click)="validDoc(d)">
+                    Approve
+                  </button> 
+                  <button *ngIf="d.status === 'pending'" class="btn btn-theme btn-danger mr-2" (click)="rejectDoc(d)">
+                    Reject
+                  </button> 
+                </div>                                                            
+            </div>                                      
+          </div>
+        </div>
+    </div>
+  </div>
+

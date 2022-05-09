@@ -1,0 +1,52 @@
+<div class="progress-loader" [hidden]="!isLoading">
+  <img src="assets/images/loadbk.gif">
+</div>
+<div class="container" id="admin" *ngIf="!isLoading">
+    <h2>List required document</h2>
+    <button (click)="back()" class="btn btn-secondary btn-large capitalize mt-2">
+        <i class="fa fa-arrow-left"></i> Back
+      </button> 
+  <p class="title-2">
+    <span class="s-title text-center"></span>
+  </p>  
+     
+  <div class="text-right">
+    <button (click)="edit()"  [disabled]="isLoading" type="submit" class="btn btn-warning btn-large capitalize mt-2"> Add new required document </button>&nbsp;
+</div>
+    <!--form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="form-group" [ngClass]="displayFieldCss(form, 'name')">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name" >
+        </div>
+        <button [disabled]="isLoading" type="submit" class="btn btn-warning btn-large capitalize mt-2">Post</button> 
+    </form-->
+   
+    <div class="col-xs-12 col-md-10 content table-responsive mt-4" [hidden]="isLoading">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="text-left border-top-0">S.No</th>
+              <th class="text-left border-top-0">Name </th>
+              <th class="text-left border-top-0">Ownership </th>
+              <th class="text-left border-top-0" style="width: 200px;"></th>
+            </tr>
+          </thead>
+          <tbody class="pt-3" *ngIf="rows && rows.length">
+            <tr *ngFor="let d of rows" >
+              <td class="text-left">{{d.id}}</td>
+              <td class="text-left">{{d.name}}</td>
+              <td class="text-left">
+                  <!----input type="checkbox" [checked]="d.ownership === 1"-->
+                  <label *ngIf="d.ownership">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                </label>
+              </td>
+              <td class="td-actions text-right">
+                <button (click)="edit(d)"  [disabled]="isLoading" type="submit" class="btn btn btn-outline-dark btn-link btn-xs"> EDIT</button>&nbsp;
+                <a class="btn btn btn-outline-danger text-danger btn-link btn-xs" (click)="delete(d)">DELETE</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</div>    

@@ -1,0 +1,57 @@
+<div class="main-content container pb-3" id="admin">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8">
+          <h4 class="title font-30">Sliders/Updates</h4>    
+          <p class="title-2">Sliders
+          </p>  
+          <button (click)="back()" class="btn btn-secondary btn-large capitalize mt-2">
+            <i class="fa fa-arrow-left"></i> Back
+          </button>    
+        </div> 
+          
+  
+        <div class="col-md-12 d-flex mt-3" *ngIf="form">        
+  
+          <form class="col-sm-12 col-md-12 col-lg-12 pl-0" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+            <div class="form-group">            
+              <div class="row">
+                <div class="col-md-8 form-group pl-0">
+                  <app-file-uploader #uploaderBanner
+                  [file]="data?.image"
+                    maxWidth="600px" label="Upload Slider  picture" 
+                    size="" 
+                    [edition]="edition" btnClass="btn-warning"                    
+                    [endpoint]="'upload'" folder="article" [multiple]="false"
+                    typeImage="banner"
+                    (onDone)="endBanner($event)">
+                  </app-file-uploader> 
+                </div>
+              
+              </div>
+              
+            </div>
+           
+  
+            <div class="form-group" [ngClass]="displayFieldCss(form, 'title')">
+              <label>Sliders Title</label>
+              <input type="text" class="form-control" formControlName="title" required="">
+            </div>
+            <div class="form-group" [ngClass]="displayFieldCss(form, 'content')">
+              <label>Sliders text</label>
+              <quill-editor  formControlName="content" required=""></quill-editor> 
+            </div>
+            <div class="form-group" [ngClass]="displayFieldCss(form, 'title')">
+              <label>Sliders order</label>
+              <input type="number" class="form-control" formControlName="order" required="">
+            </div>
+  
+            
+            <button [disabled]="isLoading" type="submit" class="btn btn-warning btn-large capitalize mt-2">Post</button>
+          </form>
+        </div>        
+      </div>
+    </div>
+  </div>
+  
+    

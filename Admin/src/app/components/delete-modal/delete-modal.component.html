@@ -1,0 +1,30 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row justify-content-end" (click)="close()" style="cursor: pointer;">
+            <em class="material-icons" style="color: #4a4a4a;">clear</em>
+          </div>
+          <div class="text-center">
+            
+            <i *ngIf="iconClass !== 'bread'" [class]="'fa text-danger ' + iconClass"></i>
+            <img *ngIf="iconClass === 'bread'" src="../../../assets/img//icons/bread.png" width="100">
+            <h3>{{ text }}</h3>
+          </div>
+          <div class="content">
+            <div class="row">
+              <div class="col-md text-center">
+                <button type="button" class="btn btn-default" (click)="close()">NO</button>
+                &nbsp;
+                <button type="button" class="btn btn-danger btn-fill" (click)="delete()">YES</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

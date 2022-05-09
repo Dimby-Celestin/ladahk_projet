@@ -1,0 +1,504 @@
+/*!
+ * Start Bootstrap - Landing Page v5.0.8 (https://startbootstrap.com/themes/landing-page)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-landing-page/blob/master/LICENSE)
+ */
+ 
+.section-greek {
+	position: relative;
+	/*background-color: #343a40;
+	background: url("../img/Image_map.png") no-repeat center center;*/
+	background-size: cover;
+	padding-top: 8rem;
+	padding-bottom: 8rem;
+	height: 625px;
+}
+.explore-ladakh {
+	position: relative;
+	background-color: #343a40;
+	background: url("../images/the-ladakh-ladies-43391713.png") no-repeat center center;
+	background-size: cover;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	h1 {
+		font-family: sourceSansPro-bold;
+		font-size: 60px;
+	}
+}
+@media (min-width: 1200px) {
+	.container {
+		max-width: calc(100% - 160px) !important;
+		margin: 0 80px !important;
+	}
+}
+.content-img {
+	width: 100%;
+	height: 280px;
+	display: inline-block;
+	margin-right: 25px;
+	.img-slide {
+		width: 100%;
+		height: 280px;
+		border-radius: 21px;
+		object-fit: cover;
+	}
+	.div-slide {
+		width: 100%;
+		height: 70px;
+		border-bottom-left-radius: 20px;
+		border-bottom-right-radius: 20px;
+		background: rgba(0, 0, 0, 0.8);
+		left: 0;
+		right: 0;
+		display: table;
+		margin-top: -70px;
+		position: relative;
+	}
+}
+.video {
+	/*background: #ccc;
+	background: url("../img/cropped-ladakh-festival-2019-india.png") no-repeat center center;
+	background-size: cover;*/
+	border: 1px solid #ccc;
+	border-radius: 20px;
+	width: 100%;
+	height: auto;
+}
+#video {
+	.list {
+		border-right: 3px solid #707070;
+		height: calc(100% - 30px);
+		ul {
+			padding-right: 36px;
+			font-size: 20px;
+			.active {
+				color: #e63f0d;
+				span {
+					height: 2px;
+					width: 22px;
+					background: #e63f0d;
+					display: block;
+					position: absolute;
+					right: 17px;
+					margin-top: -14px;
+				}
+			}
+		}
+		li {
+			padding-top: 10px;
+			padding-bottom: 10px;
+			list-style: none;
+			cursor: pointer;
+			color: #1a1a1a;
+			&:hover {
+				color: #e63f0d;
+			}
+		}
+	}
+}
+
+
+
+
+.card-pro-map {
+	width: 250px !important;
+	display: block;
+	background: #fff !important;
+	border: 0 !important;
+	border-radius: 12px !important;
+	padding: 12px !important;
+	.card-img-left {
+		width: 226px;
+		display: block;
+		padding-bottom: 8px !important; 
+	}
+	.card-body {
+		width: 100%;
+		display: block;
+		padding: 0 !important; 
+		margin: 0 !important;
+		p {
+			color: #0c3872;
+			font-size: 14px;
+			font-weight: 100;
+			font-family: sourceSansPro-regular !important;
+			margin-bottom: 0px !important;
+		}
+	}	
+}
+@media (max-width: 767px) {
+	.card-pro-map {
+		width: 200px !important;
+		display: block;
+		background: #fff !important;
+		border: 0 !important;
+		border-radius: 10px !important;
+		padding: 8px !important;
+		.card-img-left {
+			width: 184px;
+			display: block;
+			padding-bottom: 7px !important;
+		}
+		.card-body {
+			width: 184px;
+			display: block;
+			padding: 0 !important; 
+			margin: 0 !important;
+			p {
+				color: #0c3872;
+				font-size: 11px;
+				font-weight: 100;
+				font-family: sourceSansPro-regular !important;
+				margin-bottom: 0px !important;
+			}
+		}	
+	}
+}
+.lh-86 {
+	line-height: 0.86 !important;
+}
+.f-sp-l {
+	font-family: sourceSansPro-ExtraLight !important;
+}
+
+
+.calendar {
+	background: #f2f2f2;
+	height: 350px;
+	border-radius: 6px;
+	margin-top: -10px;
+	width: fit-content;
+}
+
+// cutome calendar
+.jsCalendar tbody td.jsCalendar-current {
+    background-color: #00b1ff !important;
+    border-radius: 2px !important;
+	color: #fff !important;
+}
+.jsCalendar table {
+    background-color: transparent !important;
+    border-collapse: collapse !important;
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    color: #2e2e2e !important;
+    font-family: roboto-medium !important;
+    margin: 5px;
+}
+.jsCalendar tbody td, .jsCalendar thead .jsCalendar-week-days th {
+    border-radius: 18px;
+    cursor: default;
+    display: inline-block;
+    font-size: 11px !important;
+    font-weight: lighter;
+    height: 36px;
+    line-height: 36px;
+    margin: 1px 2px;
+    text-align: center;
+    transition: color .1s,background-color .2s;
+    width: 36px;
+}
+.jsCalendar thead .jsCalendar-title-row { 
+	display: none !important;
+}
+.jsCalendar thead .jsCalendar-week-days {
+	position: absolute !important;
+    bottom: 0 !important;
+	margin-bottom: 87px !important;
+	color: #e80909 !important;
+	font-family: roboto-medium !important;
+}
+.jsCalendar tbody td.jsCalendar-current {
+	font-size: 13px !important;
+}
+
+// footer calendar
+.calendar-info {
+	position: relative;
+	top: -42px;
+	padding-left: 16px;
+	div {
+		color: #2e2e2e !important;
+		font-family: roboto-medium !important;
+		font-size: 9px;
+		font-weight: 100;
+		margin-left: 4px;
+    	margin-right: 12px;
+		span {
+			display: inline-block;
+			width: 5px;
+			height: 5px;
+			border-radius: 50%;
+			box-shadow: 0 0 6px 0 rgba(177, 0, 255, 0.38);	
+			margin-right: 4px;		
+		}
+		span.b-violet {				
+			background-color: #b100ff;
+		}
+		span.b-red {				
+			background-color: #ff0031;
+		}
+		span.b-green {								
+			background-color: #17dd3d;
+		}
+	}
+}
+
+/* map */
+#mapholder {
+	img {
+		position: relative;
+		width: 100%;
+		height: auto;
+		 object-fit: cover;
+	}
+	ul {
+		/*width: 1351px;
+		height: 869px;
+		position: relative;
+		margin-top: -869px;
+		display: block;*/
+		
+		background: transparent;
+		padding: 0;
+		margin: 0;
+		width: 100%;
+		height: auto;
+		list-style: none;
+		li {
+			display: inline;
+			width: 0;
+			position: absolute;
+			height: 0;
+			button {
+				position: absolute;
+				display: block;
+				width: 27px;
+				height: 27px;
+				border-radius: 27px;
+				border: solid 2px #707070;
+				background-color: #ef2a1a;
+				cursor: pointer;				
+			}
+			.big-pointer {
+				width: 30px !important;
+				height: 56px !important;
+			}
+			&.p1 {
+				button { opacity: 0; }
+			}
+			&.p2 {
+				button { opacity: 0; }
+			}
+			&.p3 {
+				button { opacity: 0; }
+			}
+			&.p4 {
+				button { opacity: 0; }
+			}
+			&.p5 {
+				button { opacity: 0; }
+			}
+			&.p6 {
+				button { opacity: 0; }
+			}
+			&.p7 {
+				button { opacity: 0; }
+			}
+			&.p8 {
+				button { opacity: 0; }
+			}
+			&.p9 {
+				button { opacity: 0; }
+			}
+			&.p10 {
+				button { opacity: 0; }
+			}
+			&.p11 {
+				button { opacity: 0; }
+			}
+			&.p12 {
+				button { opacity: 0; }
+			}
+			&.p13 {
+				button { opacity: 0; }
+			}
+			&.p14 {
+				button { opacity: 0; }
+			}
+			&.p15 {
+				button { opacity: 0; }
+			}
+			&.p16 {
+				button { opacity: 0; }
+			}
+			&.p17 {
+				button { opacity: 0; }
+			}
+			&.p18 {
+				button { opacity: 0; }
+			}
+			&.p19 {
+				button { opacity: 0; }
+			}
+			&.p20 {
+				button { opacity: 0; }
+			}
+			&.p21 {
+				button { opacity: 0; }
+			}
+			@media (max-width: 767px) {
+				&.p1 {
+					button { opacity: 0; }
+				}
+				&.p2 {
+					button { opacity: 0; }
+				}
+				&.p3 {
+					button { opacity: 0; }
+				}
+				&.p4 {
+					button { opacity: 0; }
+				}
+				&.p5 {
+					button { opacity: 0; }
+				}
+				&.p6 {
+					button { opacity: 0; }
+				}
+				&.p7 {
+					button { opacity: 0; }
+				}
+				&.p8 {
+					button { opacity: 0; }
+				}
+				&.p9 {
+					button { opacity: 0; }
+				}
+				&.p10 {
+					button { opacity: 0; }
+				}
+				&.p11 {
+					button { opacity: 0; }
+				}
+				&.p12 {
+					button { opacity: 0; }
+				}
+				&.p13 {
+					button { opacity: 0; }
+				}
+				&.p14 {
+					button { opacity: 0; }
+				}
+				&.p15 {
+					button { opacity: 0; }
+				}
+				&.p16 {
+					button { opacity: 0; }
+				}
+				&.p17 {
+					button { opacity: 0; }
+				}
+				&.p18 {
+					button { opacity: 0; }
+				}
+				&.p19 {
+					button { opacity: 0; }
+				}
+				&.p20 {
+					button { opacity: 0; }
+				}
+				&.p21 {
+					button { opacity: 0; }
+				}
+			}
+		}
+		
+	}
+}
+
+.newslist {
+	max-height: 320px;
+    overflow-y: auto;			
+}
+.file-input {
+	.file-drop-zone  {
+		display: none !important;
+	}
+	.file-preview {
+		display: none !important;
+	}
+}
+.room-option input {
+	right: 10px;
+}
+.room-option::before, 
+.room-option::after {
+	top: .8rem;
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+.m-top {
+	top: 370px;
+}
+.mt-pro {
+	padding:12px; 
+	border-color: black;
+}
+
+@media (max-width: 1000px) {
+	.m-top {
+		top: 272px;
+	}
+}
+@media (max-width: 762px) {
+	.carousel-caption {
+		padding-top: 0px;
+	}
+	.mt-pro {
+		top: 35px;
+		position: relative;
+	}
+}
+.para-title {
+	color: #000000;
+    font-size: 21px;
+    font-weight: 100;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.37;
+    letter-spacing: normal;
+    text-align: left;
+    font-family: sourceSansPro-regular !important;
+}
+.select-pro {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background: transparent;
+	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='18px' height='18px' viewBox='0 0 53.76 53.76' style='enable-background:new 0 0 53.76 53.76;' xml:space='preserve'><g><g><path d='M26.88,44.574L0,9.186h53.76L26.88,44.574z M4.709,11.521L26.88,40.715l22.172-29.193H4.709z'/></g></g></svg>");
+	background-repeat: no-repeat;
+	background-position-x: calc(100% - 8px);
+	background-position-y: 50%;
+	width: calc(100% + 20px);
+    margin-right: 20px;
+}
+.dropdown {
+	.btn.select-pro:focus, 
+	.btn.select-pro:hover {
+		background: #fff !important;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='18px' height='18px' viewBox='0 0 53.76 53.76' style='enable-background:new 0 0 53.76 53.76;' xml:space='preserve'><g><g><path d='M26.88,44.574L0,9.186h53.76L26.88,44.574z M4.709,11.521L26.88,40.715l22.172-29.193H4.709z'/></g></g></svg>") !important;
+		background-repeat: no-repeat !important;
+		background-position-x: calc(100% - 8px) !important;
+		background-position-y: 50% !important;
+	}
+}
+/* allpopover */
+.popover {
+	z-index: 9999;
+}
+.scrooler .slide.carousel {
+	background: none !important;
+}

@@ -1,0 +1,117 @@
+<div class="main-content container" id="admin">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class="title">Welcome Admin.</h4>
+          <p class="title-2">ADD/UPDATE SITE CONTENT</p>
+          <button (click)="goBack()" class="btn btn-secondary btn-large capitalize mt-2">
+            <i class="fa fa-arrow-left"></i> Back
+          </button> 
+        </div>
+  
+        <div class="col-md-12"><hr/></div>   
+         
+        <div class="col-md-12 d-flex mt-2">
+              <a class="bord" [routerLink]="['/slider']">
+                <h4>
+                  Home page<br/>
+                  Featured Images
+                </h4>
+                <p>(Slider)</p>
+              </a>
+        </div>
+
+        <div class="col-md-12 d-flex mt-2">
+          <a class="bord" [routerLink]="['/news']">
+            <h4>
+                News/Updates
+            </h4>
+          </a>
+          <div class="d-flex align-items-center ml-4">
+            <a class="bord" [routerLink]="['/roadtoladakh']">
+              <h4>
+                Road status<br/>
+                notification
+              </h4>
+            </a>
+          </div> 
+          <div class="d-flex align-items-center ml-4">
+            <div class="bord">
+                <a  [routerLink]="['/calendar', 'list']">
+                    <h4>
+                        Calendar
+                    </h4>
+                </a>
+            </div>
+          </div>         
+        </div>
+        <div class="col-md-12 d-flex mt-2">
+          <a class="bord" [routerLink]="['/article']">
+            <h4>
+              Articles
+            </h4>
+          </a>
+          
+          <div class="d-flex align-items-center ml-4">
+            <div class="bord">
+                <a [routerLink]="['/business-category']">
+                  <h4>
+                    Business category
+                  </h4>
+                </a>
+           </div>
+           </div>   
+          
+          <div class="d-flex align-items-center ml-4">
+            <div class="bord">
+                <a  [routerLink]="['/must-to-do']">
+                  <h4>
+                    Must to do section                  
+                  </h4>
+                </a>
+                  <p>(Select featured)</p>
+            </div>
+          </div>       
+        </div>
+
+        <div class="col-md-12 d-flex mt-2">
+          <div class="bord">
+            <a [routerLink]="['/videos']">
+              <h4>
+                  Videos
+              </h4>
+            </a>
+          </div>
+          <div class="d-flex align-items-center ml-4">
+            <div class="bord">
+                <a [routerLink]="['/gallery']">
+              <h4>
+                Photos                                  
+              </h4>
+              <p>(Gallery Images)</p>
+            </a>
+            </div>
+            
+          </div>       
+        </div>
+        <div class="col-md-12 d-flex mt-2">
+          <div class="bord">
+            <a [routerLink]="['/faq']">
+              <h4>
+                FAQ Section
+              </h4>
+            </a>
+          </div>   
+          <div class="d-flex align-items-center ml-4">
+            <a class="bord" [routerLink]="['/categorie']">
+              <h4>
+                Categories
+              </h4>
+            </a>
+          </div>     
+        </div>
+      
+      </div>
+    </div>
+  </div>
+  

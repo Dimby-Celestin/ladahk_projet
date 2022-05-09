@@ -1,0 +1,39 @@
+put:
+  summary: Updates a Business by ID
+  description: Updates a Business by ID.
+  operationId: updateBusinessStatus
+  tags:
+    - Business
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: id
+      in: path
+      description: Business ID.
+      type: string
+      required: true
+    - in: body
+      name: body
+      schema:
+        type: object
+        properties: 
+          status: 
+            type: string
+            enum:
+              - registering
+              - waiting_form
+              - under_review
+              - waiting_payment
+              - ignoring_guidelines
+              - document_missing
+              - valid
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/Business'
+    400:
+      $ref: '#/responses/UnauthorizedError'

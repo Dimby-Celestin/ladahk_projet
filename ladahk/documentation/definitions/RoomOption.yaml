@@ -1,0 +1,20 @@
+type: object
+description: RoomOption
+properties:
+  id: 
+    type: string
+    readOnly: true
+  title:
+    type: string
+  subtitle:
+    type: string
+  updated_at:
+    type: integer
+    format: Timestamp when the token will expire in seconds since UNIX epoch
+    readOnly: true
+  created_at:
+    type: integer
+    format: Timestamp when the token will expire in seconds since UNIX epoch
+    readOnly: true
+  
+    

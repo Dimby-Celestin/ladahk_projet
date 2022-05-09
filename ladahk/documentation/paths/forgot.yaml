@@ -1,0 +1,22 @@
+post:
+  summary: Restore access to a forgotten user
+  description: Assign new temporary password and send it by email to the user. On a new connection with this temporary password, the temporary is assigned to regular, and temporary is removed.
+  tags: 
+    - Authentication
+  operationId: forgot
+  consumes:
+    - application/json
+  parameters:
+    - in: body
+      name: user
+      description: the user email to launch the forgotten password process
+      schema:
+        type: object
+        properties: 
+          email: 
+            type: string
+  produces:
+    - application/json
+  responses:
+    200:
+      description: Always respond a success message, to not leak unexisting or existing email in DB.

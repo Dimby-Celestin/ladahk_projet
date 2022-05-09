@@ -1,0 +1,21 @@
+type: object
+description: GalleryCategory
+properties:
+  id:
+    type: string
+    readOnly: true
+  name:
+    type: string
+    description: name
+  slug:
+    type: string
+    description: name
+  updated_at:
+    type: integer
+    format: Timestamp when the token will expire in seconds since UNIX epoch
+    readOnly: true
+  created_at:
+    type: integer
+    format: Timestamp when the token will expire in seconds since UNIX epoch
+    readOnly: true
+  

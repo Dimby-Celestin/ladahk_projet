@@ -1,0 +1,32 @@
+type: object
+description: Roadtoladakh
+properties:
+  id:
+    type: string
+    readOnly: true
+  title:
+    type: string
+    description: title of the article
+  content:
+    type: string
+    description: content of the article
+  slug:
+    type: string
+    description: name
+  thumbnail:
+     $ref: '#/definitions/Document'
+  banner:
+     $ref: '#/definitions/Document'
+  images:
+    type: array
+    items:
+      $ref: '#/definitions/Document'
+  updated_at:
+    type: integer
+    format: Timestamp 
+    readOnly: true
+  created_at:
+    type: integer
+    format: Timestamp
+    readOnly: true
+  

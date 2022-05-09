@@ -1,0 +1,16 @@
+get:
+  summary: business stats
+  description: business stats
+  operationId: statBusiness
+  tags:
+    - Business
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+    400:
+      $ref: '#/responses/UnauthorizedError'

@@ -1,0 +1,26 @@
+<nav #navbar class="navbar navbar-expand-lg navbar-light  navbar-absolute">
+    <div class="navbar-wrapper">
+    </div>
+    <button mat-button class="navbar-toggler btn-no-ripple" type="button" >
+      <span class="sr-only">Toggle navigation</span>
+      <span class="navbar-toggler-icon icon-bar"></span>
+    </button>
+  
+      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+   
+        <li class="nav-item">
+            <a *ngIf="session.user.role === 'admin'" class="nav-link  d-flex flex-row power-icon" [routerLink]="['/post']" >
+                <i class="material-icons">dashboard</i> &nbsp;Dashboard 
+              </a>
+              <a *ngIf="session.type === 'business'" class="nav-link  d-flex flex-row power-icon" [routerLink]="['/accounts', 'home']" >
+                <i class="material-icons">person</i> &nbsp;My account
+              </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  d-flex flex-row power-icon" href="javascript:void(0)" (click)="logout()">
+            <i class="material-icons">power_settings_new</i> &nbsp;{{session?.user?.name}}
+            
+          </a>
+        </li>
+      </ul>
+</nav>

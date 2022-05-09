@@ -1,0 +1,32 @@
+type: object
+description: Patient
+properties:
+  id: 
+    type: string
+    readOnly: true
+  filename:
+    type: string
+  original_filename:
+    type: string
+  path:
+    type: string
+  mime_type:
+    type: string
+  extension:
+    type: string
+  type:
+    type: string
+    enum:
+      - thumbnail
+      - gallery
+      - banner
+  updated_at:
+    type: integer
+    format: Timestamp when the token will expire in seconds since UNIX epoch
+    readOnly: true
+  created_at:
+    type: integer
+    format: Timestamp when the token will expire in seconds since UNIX epoch
+    readOnly: true
+  
+    

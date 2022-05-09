@@ -1,0 +1,143 @@
+    <div>
+        <h5 class="modal-title">Modal title</h5>
+       <button (click)="onNoClick()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 style="color: black">
+            {{ data && data.name ? data.name : '' }}           
+        </h3>
+        <button type="button" disabled class="btn btn-success" data-dismiss="modal">
+          {{getLabelStatus(data.status)}}
+        </button>&nbsp;&nbsp;
+        <button *ngIf="data.status === 'valid'" type="button" class="btn btn-info" data-dismiss="modal" (click)="navigToTransfer()">
+          TRANSFER DETAILS
+        </button> 
+        <br/><br/><br/>
+        <div style="color: black" class ="row">
+          <div  class ="col">
+            <div class="d-flex align-items-center mb-2 mr-4">
+              <ng-select 
+                class="select-pro select-pro-holder br-4 min-w-190"
+                [items]="statusArray" 
+                [(ngModel)]="filter.status" 
+                (ngModelChange)="statusOnChange($event)"
+                [ngModelOptions]="{standalone: true}"
+                placeholder=" STATUS ">
+              </ng-select>
+            </div>
+          </div>
+          <div class ="col">
+              <div class="d-flex align-items-center mb-2 mr-4">
+                  <div class="">
+                      <div class="input-group">
+                          <input type="text" [(ngModel)]="comment" class="form-control" placeholder="COMMENT" >
+                      </div> 
+                  </div>
+              </div>
+          </div>
+          <div class ="col">
+              <button (click)="update()" type="button" class="btn btn-secondary" data-dismiss="modal" >Update</button> 
+          </div>
+        </div>
+
+        <div class="row mt-2" *ngIf="data.status === 'under_review'" style="color: black">
+          <div class="col"> 
+            <label for="">DOCUMENTS VERIFICATION</label>             
+          </div> 
+        </div> 
+        <div *ngIf="data.status === 'under_review'" style="color: black" class ="row">                    
+          <div class="col">            
+            <div class="d-flex align-items-center mb-2 mr-4">              
+              <ng-select 
+                class="select-pro select-pro-holder br-4 min-w-190"
+                [items]="documentStatus" 
+                [(ngModel)]="data.documentStatus" 
+                (ngModelChange)="statusOnChangeDocs($event)"
+                [ngModelOptions]="{standalone: true}"
+                placeholder=" STATUS ">
+              </ng-select>
+            </div>
+          </div>
+          <div class="col">
+            <div class="d-flex align-items-center mb-2 mr-4">
+              <div class="">
+                <div class="input-group">
+                  <input type="text" [(ngModel)]="comment" class="form-control" placeholder="COMMENT" >
+                </div> 
+              </div>
+            </div>
+          </div>
+          <div class="col">
+              <button (click)="updateDocs()" type="button" class="btn btn-secondary" data-dismiss="modal" >Update</button> 
+          </div>
+        </div>
+
+        <div class="row mt-2" *ngIf="data.status === 'under_review'" style="color: black">
+          <div class="col"> 
+            <label for="">DISPLAY VERIFICATION</label>             
+          </div> 
+        </div> 
+        <div *ngIf="data.status === 'under_review'" style="color: black" class ="row">                    
+          <div class="col">            
+            <div class="d-flex align-items-center mb-2 mr-4">              
+              <ng-select 
+                class="select-pro select-pro-holder br-4 min-w-190"
+                [items]="documentStatus" 
+                [(ngModel)]="data.displayStatus" 
+                (ngModelChange)="statusOnChangeDisplay($event)"
+                [ngModelOptions]="{standalone: true}"
+                placeholder=" STATUS ">
+              </ng-select>
+            </div>
+          </div>
+          <div class="col">
+            <div class="d-flex align-items-center mb-2 mr-4">
+              <div class="">
+                <div class="input-group">
+                  <input type="text" [(ngModel)]="comment" class="form-control" placeholder="COMMENT" >
+                </div> 
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <button (click)="updateDisplay()" type="button" class="btn btn-secondary" data-dismiss="modal">Update</button> 
+          </div>
+        </div>
+        
+
+        <p class="title-2">LISTING CLASS TYPE: CLASS {{dataBusn.name}}
+          <span class="s-title text-center"></span>
+        </p> 
+        
+        <div *ngIf="(data.status === 'under_review' || data.status == 'waiting_form' || data.status === 'waiting_payment' || data.status === 'ignoring_guidelines'
+          || data.status === 'document_missing' || data.status === 'valid' || data.status === 'rejected')
+           && rowsRq && rowsRq.length" 
+          class="col-xs-12 col-md-10 content table-responsive mt-4"
+        >
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th class="text-left border-top-0">S.No</th>
+                <th class="text-left border-top-0">Name </th>
+                <th class="text-left border-top-0" style="width: 200px;"></th>
+              </tr>
+            </thead>
+            <tbody class="pt-3">                        
+                <tr *ngFor="let d of rowsRq">
+                  <td class="text-left">{{d?.id}}</td>
+                  <td class="text-left"> {{d.name}}</td>
+                  <td class="td-actions text-right"> 
+                    <a class="btn btn btn-success btn-xs" *ngIf="d.doc" target='_blank'  [href]="d.doc.realPath"> VIEW</a>
+                    </td>
+                  <td>
+
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+    </div> 
+   
+    
+    
+    

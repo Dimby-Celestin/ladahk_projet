@@ -1,0 +1,105 @@
+<div class="main-content container" id="admin">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12"  *ngIf="!isLoading">
+          <h4 class="title">Welcome Admin.</h4>
+          <button (click)="back()" class="btn btn-secondary btn-large capitalize mt-2">
+            <i class="fa fa-arrow-left"></i> Back
+          </button><br/><br/>
+          <p class="title-2">Must to do
+          </p>
+        </div>
+
+        <div class="col-md-12 mt-2" *ngIf="!isLoading"><hr/></div>                   
+        
+        <!--div class="col-xs-12 col-md-10 content table-responsive mt-4">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th class="text-left border-top-0">Is must to do?</th>
+                <th class="text-left border-top-0">Title</th>
+              </tr>
+            </thead>
+            <tbody class="pt-3" *ngIf="!isLoading">
+              <tr *ngFor="let d of rows | paginate: {id: 'page', itemsPerPage: pageSize, currentPage: page, totalItems: pageLength}">
+                <td class="text-left">
+                  <input type="checkbox" [value]="true" [checked]="d.must_to_do" [disabled]="isLoading" (change)="changeMustToDo(d, $event)">
+                </td>
+                <td class="text-left">{{d.title}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class=" progress-loader text-center" [hidden]="!isLoading">
+              <img src="assets/images/loadbk.gif">
+          </div>
+        </div-->
+
+        <div class="col-xs-12 col-md-10 mt-4">
+          <div class="pull-right p-right">
+            <button [disabled]="isLoading" type="button" class="btn btn-warning" (click)="save()" >
+              Save order
+            </button>
+          </div>
+          <div>
+            <div class="w500 d-flex flex-row mb-3">
+              <div class="w-15 title-order pl-2">
+                S.No
+              </div>  
+              <div class="w-30 title-order">
+                Is must to do?
+              </div>
+              <div class="title-order w-75 text-left">
+                Title
+              </div>
+            </div>   
+            <div cdkDropList class="example-list scrool-pro" (cdkDropListDropped)="drop($event)">
+              <div class="example-box d-flex flex-row" *ngFor="let item of rows" cdkDrag>
+                  <div class="w-15 title-order">
+                      {{item.order}}
+                  </div>  
+                  <div class="w-30">
+                      <input type="checkbox" [value]="true" [checked]="item.must_to_do" [disabled]="isLoading" (change)="changeMustToDo(item, $event)">
+                  </div>
+                  <div class="title-order w-75 text-left">
+                    {{item.title}}
+                  </div>
+              </div>       
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 mt-2" *ngIf="!isLoading"><hr/></div>   
+
+        <!--div class="col-lg-12 pb-4 mt-5 mb-4 footer-pager text-center"  *ngIf="!isLoading">
+          <div class="col text-right">
+            <pagination-template #p="paginationApi" id="page" (pageChange)="pageChangeEvent($event)">
+              <nav class="mx-auto">
+              <ul class="pagination mx-auto">
+                <li [class.disabled]="p.isFirstPage()" class="page-item">
+                  <a class="page-link prev" (click)="!p.isFirstPage() && p.previous()">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item" *ngFor="let customPage of p.pages">
+                  <a class="page-link"  [class.active]="p.getCurrent() === customPage.value" (click)="p.setCurrent(customPage.value)" *ngIf="p.getCurrent() !== customPage.value">
+                    {{customPage.label }}</a>
+                  <a class="page-link active" *ngIf="p.getCurrent() === customPage.value">{{ customPage.label }}</a>
+                </li>
+                <li class="page-item" [class.disabled]="p.isLastPage()">
+                  <a (click)="!p.isLastPage() && p.next()" class="page-link next">
+                    <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+              </nav>
+              <h4 class="text-center">  {{page}} to {{pageSize * page}} of {{pageLength}} totals</h4> 
+            </pagination-template>
+          </div>
+        </div-->
+
+      </div>
+    </div>
+  </div>
+  

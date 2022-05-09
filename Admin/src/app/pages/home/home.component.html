@@ -1,0 +1,257 @@
+<div class="main-content container" id="admin">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12" *ngIf="session && session.user">
+          <h4   class="title">Welcome {{session?.user.roleLabel}},</h4>
+          <p *ngIf="session.user.role == 'admin'" class="title-2">ADD/UPDATE SITE CONTENT 
+            <a *ngIf="session.user.role == 'admin'" class="btn btn-warning ml-4" [routerLink]="['/post']" >
+              EDIT SITE 
+            </a> 
+            <a  class="btn btn-warning ml-4 text-right" [routerLink]="['list']" >
+              TRANSFER
+            </a>
+            <a *ngIf="session.user.role == 'admin'" class="btn btn-warning ml-4" [routerLink]="['payement-details']" >
+              PAYMENT DETAILS
+            </a>  
+          </p>
+        </div>
+        <div class="col-md-12 mt-2"><hr/></div>   
+        <div class="col-md-6 d-flex mt-4">
+          <p class="title-2">SITE MEMBERS</p>&nbsp;&nbsp; 
+            <div *ngIf="filter.status === 'valid'" class="">
+                <!--div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search" name="q" [(ngModel)]="searchString"
+                    (ngModelChange)="searchUpdated$.next(searchString)">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div--> 
+          </div>
+        </div>
+       
+
+        <div class="col-md-12 d-flex mt-2">
+          <div class="d-flex align-items-center mb-2 mr-4" (click)="select('all')">
+              <button class="btn " [ngClass]="{'btn-outline-dark': !isAllActive, 'btn-outline-warning': isAllActive}">
+                ACCOUNT
+              </button>
+            <h4 class="nbr mb-0 ml-2">{{count?.countTotal}}</h4>
+          </div>
+          <div class="d-flex align-items-center mb-2 mr-4" (click)="select('new')">
+            <button class="btn " [ngClass]="{'btn-outline-dark': filter.status != 'new', 'btn-outline-warning': filter.status == 'new'}">
+              SIGNIN REQUEST APPROVAL
+            </button>
+          <h4 class="nbr mb-0 ml-2">{{count?.countSRA}}</h4>
+          </div>
+
+          <div class="d-flex align-items-center mb-2 mr-4" >
+            <button class="btn btn-outline-dark" [ngClass]="{'btn-outline-dark': filter.status != 'registering', 'btn-outline-warning': filter.status == 'registering'}" (click)="select('registering')"> 
+              REGISTERING APPROVAL
+            </button>
+            <h4 class="nbr mb-0 ml-2">{{count?.countRA}}</h4>
+          </div>
+             
+          <div class="d-flex align-items-center mb-2 mr-4" >
+            <button class="btn btn-outline-dark" [ngClass]="{'btn-outline-dark': filter.status != 'under_review', 'btn-outline-warning': filter.status == 'under_review'}" (click)="select('under_review')"> 
+              UNDER REVIEW
+            </button>
+            <h4 class="nbr mb-0 ml-2">{{count?.countUR}}</h4>
+          </div>
+             
+          <div class="d-flex align-items-center mb-2 mr-4">
+            <button class="btn btn-outline-dark"  [ngClass]="{'btn-outline-dark': filter.status != 'rejected', 'btn-outline-warning': filter.status == 'rejected'}"  (click)="select('rejected')">
+              REJECTED
+            </button>
+            <h4 class="nbr mb-0 ml-2">{{count?.countRJ}}</h4>
+          </div>
+
+          <div class="d-flex align-items-center mb-2 mr-4">
+            <button class="btn btn-outline-warning" [ngClass]="{'btn-outline-dark': filter.status != 'valid'  , 'btn-outline-warning': filter.status == 'valid' && filter.business_subcategory_id != 9}"  (click)="select('valid')">
+              APPROVED LISTINGS
+            </button>
+            <h4 class="nbr  mb-0 ml-2">{{count?.countAL}}</h4>
+          </div>
+          <div class="d-flex align-items-center mb-2 mr-4">
+            <button  class="btn btn-outline-warning"  
+            [ngClass]="{'btn-outline-dark': filter.business_category_id !== 9, 'btn-outline-warning': filter.business_category_id === 9}" 
+            (click)="isPhoto()" >
+              PHOTOGRAPHER
+            </button>
+            <h4 class="nbr mb-0 ml-2">{{count?.photographer}}</h4>
+          </div>
+          <!--div class="d-flex align-items-center mb-2 mr-4">
+            <button  class="btn btn-outline-warning"  [ngClass]="{'btn-outline-dark': !imageAll, 'btn-outline-warning': imageAll}" (click)="isImageAll()" >
+              VIEW ALL IMAGE
+            </button>
+            <h4 class="nbr mb-0 ml-2"></h4>
+          </div-->
+         
+        </div>
+        
+        <div class="col-md-12 mt-2"><hr/></div>   
+        <!--*ngIf="filter.status != 'valid'" -->
+        <div class="col-md-12 d-flex mt-2">
+          <div class="d-flex align-items-center mb-2 mr-4">
+            <ng-select 
+              class="select-pro select-pro-holder br-4 min-w-190"
+              [items]="statusArray" 
+              bindLabel="label"
+              bindValue="_id"
+              [(ngModel)]="filter.status" 
+              (ngModelChange)="statusOnChange($event)"
+              [ngModelOptions]="{standalone: true}"
+              placeholder=" TYPE ">
+            </ng-select>
+          </div>
+          <div class="d-flex align-items-center mb-2 mr-4">
+              <input class="form-control br-4 placeholder-pro form-control-pro" 
+                (click)="pickerstart.open()" 
+                [matDatepicker]="pickerstart" 
+                [(ngModel)]="filter.created_at"
+                placeholder="DATE" type="text"  
+                (dateChange)="dateChanged($event)"  
+              />
+              <mat-datepicker #pickerstart></mat-datepicker>
+          </div>
+          <div class="d-flex align-items-center mb-2 mr-4">
+            <div class="">
+              <div class="input-group">
+                <input type="text" class="form-control br-4 placeholder-pro form-control-pro" placeholder="SEARCH" name="q" [(ngModel)]="searchString"
+                (ngModelChange)="searchUpdated$.next(searchString)">
+                <!----div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+                </div-->
+              </div> 
+          </div>
+          </div>
+          <div class="d-flex align-items-center mb-2 mr-4">
+            <ng-select 
+              class="select-pro select-pro-holder br-4"
+              [items]="region" 
+              [(ngModel)]="filter.city" 
+              (ngModelChange)="cityOnChange($event)"
+              [ngModelOptions]="{standalone: true}"
+              placeholder=" REGION ">
+            </ng-select>
+          </div>
+          <div class="d-flex align-items-center mb-2 mr-4">
+            <ng-select 
+              class="select-pro select-pro-holder br-4 min-w-205"
+              [items]="listType" 
+              bindLabel="name" 
+              bindValue="id" 
+              [(ngModel)]="filter.business_category_id" 
+              (ngModelChange)="listTypeOnChange($event)"
+              [ngModelOptions]="{standalone: true}"
+              placeholder=" LISTING TYPE ">
+            </ng-select>
+          </div>
+          <div class="d-flex align-items-center mb-2 mr-4" *ngIf="listClass && listClass.length > 0">
+            <ng-select 
+              class="select-pro select-pro-holder br-4"
+              [items]="listClass" 
+              bindLabel="name" 
+              bindValue="id" 
+              [(ngModel)]="filter.business_subcategory_id" 
+              (ngModelChange)="classOnChange($event)"
+              [ngModelOptions]="{standalone: true}"
+              placeholder=" LISTING CLASS TYPE ">
+            </ng-select>
+          </div>
+          <div class="d-flex align-items-center mb-2 mr-4" (click)="select('all')">
+            <button class="form-control br-4 placeholder-pro form-control-pro ">
+              CLEAR_FILTER
+            </button>
+        </div>
+        </div>  
+        <div class="col-xs-12 col-md-10 content table-responsive mt-4">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th class="text-left border-top-0">S.No</th>
+                <th class="text-left border-top-0">Listing Name</th>
+                <th class="text-left border-top-0">Phone</th>
+                <th class="text-left border-top-0">Email</th>
+                <th class="text-left border-top-0">registering for</th>
+                <th class="text-left border-top-0"></th>
+              </tr>
+            </thead>
+            <tbody class="pt-3" *ngIf="rows && rows.length">
+              <tr  *ngFor="let d of rows | paginate: {id: 'page', itemsPerPage: pageSize, currentPage: page, totalItems: pageLength}"
+               >
+               
+                <td class="text-left">{{d.id}}</td>
+                <td class="text-left">{{d.name}}</td>
+                <td class="text-left">{{d.phone}}</td>
+                <td class="text-left">{{d.email}}</td>
+                <td class="text-left">{{d?.category?.name}}</td>
+                <!--td *ngFor="let d1 of listType" class="text-left">
+                  {{d1.name}}
+                </td-->
+                <td class="td-actions text-right border-top-0">
+                  <button *ngIf="d.status === 'valid' || d.status === 'under_review' || d.status === 'rejected' || d.status == 'waiting_form'" 
+                    (click)="view(d)" 
+                    type="submit" 
+                    class="btn btn btn-outline-dark btn-link btn-xs"
+                  > 
+                    VIEW
+                  </button>
+                  <div *ngIf="filter.status">
+                    <button *ngIf="d.status === 'new' && filter.status !== 'all' || d.status === 'registering' && filter.status !== 'all'"  
+                    (click)="view(d)"
+                    type="submit" 
+                    class="btn btn btn-outline-dark btn-link btn-xs"
+                  > 
+                    Approve
+                  </button>
+                  </div>
+                 
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-center" 
+                  *ngIf="filter.status == 'new' && count.countSRA <= 0 || 
+                  filter.status == 'registering' && count.countRA <= 0 ||
+                  filter.status == 'under_review' && count.countUR <= 0 ||
+                  filter.status == 'valid' && count.countAL <= 0 ||
+                  filter.status == 'rejected' && count.countRJ <= 0 ||
+                  filter.status === 'all' &&  count.countTotal <= 0 ">
+                  No results
+              </div>
+              <div class="progress-loader text-center" [hidden]="!isLoading">
+                <img src="assets/images/loadbk.gif">
+            </div>
+        </div>
+        <div  class="col-lg-12 pb-4 mt-5 mb-4 footer-pager text-center"> 
+          <div class="col text-right">
+            <pagination-template #p="paginationApi" id="page" (pageChange)="pageChangeEvent($event)">
+              <nav class="mx-auto">
+              <ul class="pagination mx-auto">
+                <li [class.disabled]="p.isFirstPage()" class="page-item">
+                  <a class="page-link prev" (click)="!p.isFirstPage() && p.previous()">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item" *ngFor="let customPage of p.pages">
+                  <a class="page-link" [class.active]="p.getCurrent() === customPage.value" (click)="p.setCurrent(customPage.value)" *ngIf="p.getCurrent() !== customPage.value">{{
+                    customPage.label }}</a>
+                  <a class="page-link active" *ngIf="p.getCurrent() === customPage.value">{{ customPage.label }}</a>
+                </li>
+                <li class="page-item" [class.disabled]="p.isLastPage()">
+                  <a (click)="!p.isLastPage() && p.next()" class="page-link next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+              </nav>
+              <h4 class="text-center">{{page}} to {{pageSize * page}} of {{pageLength}} totals</h4> 
+            </pagination-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

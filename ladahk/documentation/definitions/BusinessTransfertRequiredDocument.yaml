@@ -1,0 +1,42 @@
+type: object
+description: BusinessTransfertRequiredDocument
+tags:
+  - Transfert
+properties:
+  id:
+    type: string
+    readOnly: true
+  requiredDocumentId:
+    type: string
+    description: requiredDocumentId
+  businessId:
+    type: string
+    description: businessId
+  transfertId:
+    type: string
+    description: transfertId
+  path:
+    type: string
+  filename:
+    type: string
+  mime_type:
+    type: string
+  extension:
+    type: string
+  refusedReason:
+    type: string
+  status:
+    type: string
+    enum:
+      - valid
+      - refused
+      - pending
+  updated_at:
+    type: integer
+    format: Timestamp 
+    readOnly: true
+  created_at:
+    type: integer
+    format: Timestamp
+    readOnly: true
+  

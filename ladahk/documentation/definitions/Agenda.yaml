@@ -1,0 +1,32 @@
+type: object
+description: Agenda
+properties:
+  id:
+    type: string
+    readOnly: true
+  title:
+    type: string
+    description: title of the agenda
+  content:
+    type: string
+    description: content of the agenda
+  date:
+    type: string
+    format: Date
+    readOnly: true
+  type:
+    type: string
+    enum:
+      - gazzeted_holiday
+      - restricted_holiday
+      - weeky_off
+    default: weekly_off
+  updated_at:
+    type: integer
+    format: Timestamp 
+    readOnly: true
+  created_at:
+    type: integer
+    format: Timestamp
+    readOnly: true
+  

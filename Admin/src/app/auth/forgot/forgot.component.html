@@ -1,0 +1,41 @@
+
+
+
+<div class="d-md-flex h-md-100 align-items-center">
+
+  <div class="col-md-7 p-0 bg-image h-md-100">
+      <!-- <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+      </div> -->
+  </div>
+  
+  <div class="col-md-5 p-0 login-form h-md-100 loginarea">
+      <div class="d-md-flex h-md-100 ">
+        <form class="signin-form justify-content-center" [formGroup]="form" (ngSubmit)="submit()">
+           <div class="loginarea text-center">
+              <a href="#">
+                 <img src="../../../assets/img/col-right@3x.png" class=" balme-logo"  alt="">
+              </a>
+           </div>
+           <h5 class="mb-4 text-center login-title">Mot de passe oublié</h5>
+           <div class="input-group" [ngClass]="displayFieldCss(form, 'email')">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fa fa-user"></i>    
+                    </span>
+                </div>
+               <input type="email" class="form-control" id="email" formControlName="email" placeholder="Entrez votre e-mail" required="">
+           </div>
+           <div>
+               <small class="d-block mb-4 mt-3 pull-left"><a class="text-theme text-sm" [routerLink]="['/auth', 'login']" routerLinkActive="router-link-active" >< Revenir</a></small>
+           </div>
+           <div class="text-right">
+               <button type="submit" [disabled]="isSubmitting" class="btn btn-primary">Envoyer</button>
+           </div>
+       </form>
+       
+      </div>
+    <p class="copyright text-center">
+        © {{date| date:'yyyy'}} - Tout droits réservés
+    </p>
+  </div> 
+</div>

@@ -1,0 +1,75 @@
+get:
+  summary: Gets a doc by ID
+  description: Gets a doc by ID, with all data excepts the password
+  operationId: getGallery
+  tags:
+    - Gallery
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: id
+      in: path
+      description: Gallery ID. If called from the application, can be "me".
+      type: string
+      required: true
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/Gallery'
+    400:
+      $ref: '#/responses/UnauthorizedError'
+put:
+  summary: Updates a Gallery by ID
+  description: Updates a Gallery by ID.
+  operationId: updateGallery
+  tags:
+    - Gallery
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: id
+      in: path
+      description: Gallery ID.
+      type: string
+      required: true
+    - in: body
+      name: user
+      description: The user to update
+      schema:
+        $ref: "#/definitions/Gallery"
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+      schema:
+        $ref: '#/definitions/Gallery'
+    400:
+      $ref: '#/responses/UnauthorizedError'
+delete:
+  summary: Deletes a user by ID
+  description: Deletes a user by ID
+  operationId: deleteGallery
+  tags:
+    - Gallery
+  security:
+    - UserTokenHeader: []
+    - UserTokenQuery: []
+  parameters:
+    - name: id
+      in: path
+      description: Gallery ID
+      type: string
+      required: true
+  produces:
+    - application/json
+  responses:
+    200:
+      description: OK
+    400:
+      $ref: '#/responses/UnauthorizedError'

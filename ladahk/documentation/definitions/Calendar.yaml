@@ -1,0 +1,19 @@
+type: object
+description: Calendar
+properties:
+  id:
+    type: string
+    readOnly: true
+  date:
+    type: string
+    description: date
+  kind:
+    type: string
+    enum:
+      - gazetted_holiday
+      - restricted_holiday
+  title:
+    type: string
+    description: title  
+ 
+  

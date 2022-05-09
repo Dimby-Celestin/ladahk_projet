@@ -1,0 +1,110 @@
+/login:
+  $ref: ./login.yaml
+/regenerate:
+  $ref: ./regenerate.yaml
+/forgot:
+  $ref: ./forgot.yaml
+/register:
+  $ref: ./register.yaml
+/registerPro:
+  $ref: ./registerPro.yaml
+/categories:
+  $ref: ./categories.yaml
+/category/{id}:
+  $ref: ./category/index.yaml
+/users:
+  $ref: ./users.yaml
+/users/{id}:
+  $ref: ./users/index.yaml
+/articles:
+  $ref: ./articles.yaml
+/article/{id}:
+  $ref: ./article/index.yaml
+/news:
+  $ref: ./news.yaml
+/news/{id}:
+  $ref: ./news/index.yaml
+/roadtoladakh:
+  $ref: ./roadtoladakh.yaml
+/roadtoladakh/{id}:
+  $ref: ./roadtoladakh/index.yaml
+/requiredDocuments:
+  $ref: ./requiredDocuments.yaml
+/requiredDocument/{id}:
+  $ref: ./requiredDocument/index.yaml
+/sliders:
+  $ref: ./sliders.yaml
+/slider/{id}:
+  $ref: ./slider/index.yaml
+/upload:
+  $ref: ./upload.yaml
+/ajaxUpload:
+  $ref: ./ajaxUpload.yaml
+/agendas:
+  $ref: ./agendas.yaml
+/agenda/{id}:
+  $ref: ./agenda/index.yaml
+/businesses:
+  $ref: ./businesses.yaml
+/business/{id}:
+  $ref: ./business/index.yaml
+/business/{id}/updateStatus:
+  $ref: ./business/updateStatus.yaml
+/business/{id}/approve:
+  $ref: ./business/approve.yaml
+/business/{id}/ajaxUpload:
+  $ref: ./business/ajaxUpload.yaml
+/businessStat:
+  $ref: ./business/stat.yaml
+/business/{id}/reject:
+  $ref: ./business/reject.yaml
+/boptions:
+  $ref: ./boptions.yaml
+/boption/{id}:
+  $ref: ./boption/index.yaml
+/calendars:
+  $ref: ./calendars.yaml
+/calendar/{id}:
+  $ref: ./calendar/index.yaml
+/businessCategories:
+  $ref: ./businessCategories.yaml
+/businessCategory/{id}:
+  $ref: ./businessCategory/index.yaml
+/videos:
+  $ref: ./videos.yaml
+/video/{id}:
+  $ref: ./video/index.yaml
+/businessRequiredDocuments:
+  $ref: ./businessRequiredDocuments.yaml
+/businessRequiredDocument/{id}:
+  $ref: ./businessRequiredDocument/index.yaml
+/businessRequiredDocument/{id}/approve:
+  $ref: ./businessRequiredDocument/approve.yaml
+/businessRequiredDocument/{id}/reject:
+  $ref: ./businessRequiredDocument/reject.yaml
+/businessTransferts:
+  $ref: ./businessTransferts.yaml
+/businessTransfert/{id}:
+  $ref: ./businessTransfert/index.yaml
+/businessTransfert/{id}/approve:
+  $ref: ./businessTransfert/approve.yaml
+/businessTransfert/{id}/reject:
+  $ref: ./businessTransfert/reject.yaml
+/businessTransfertRequiredDocuments:
+  $ref: ./businessTransfertRequiredDocuments.yaml
+/galleries:
+  $ref: ./galleries.yaml
+/gallery/{id}:
+  $ref: ./gallery/index.yaml
+/uploadGallery:
+  $ref: ./gallery/upload.yaml
+/galleryCategories:
+  $ref: ./galleryCategories.yaml
+/staticPages:
+  $ref: ./staticPages.yaml
+/staticPage/{id}:
+  $ref: ./staticPage/index.yaml
+/misc/informationcenters:
+  $ref: ./misc/informationcenters.yaml
+/reorderListArticle:
+  $ref: ./reorderListArticle.yaml

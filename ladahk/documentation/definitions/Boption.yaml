@@ -1,0 +1,17 @@
+type: object
+description: Boption
+properties:
+  id:
+    type: string
+    readOnly: true
+  name: 
+    type: string
+    description: name
+  updated_at:
+    type: integer
+    format: Timestamp 
+    readOnly: true
+  created_at:
+    type: integer
+    format: Timestamp
+  

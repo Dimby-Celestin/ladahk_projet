@@ -1,0 +1,21 @@
+type: object
+description: StaticPage
+properties:
+  id:
+    type: integer
+    readOnly: true
+  title:
+    type: string
+  content:
+    type: string
+    description: content
+  kind:
+    type: string
+    enum:
+      - faq
+    default: faq
+  created_at:
+    type: integer
+    format: Timestamp
+    readOnly: true
+  
